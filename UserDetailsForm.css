@@ -1,0 +1,37 @@
+.userDetailsForm {
+  display: block;
+}
+
+.form {
+  margin: 0px 38%;
+  padding: 0px 40px;
+  border: 1px solid black;
+  border-radius: 3%;
+}
+
+#submit {
+  margin: 30px 80px;
+}
+
+.formElement {
+  margin: 25px;
+}
+
+#userDetailsTable {
+  margin: 50px 30%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid black;
+  padding: 5px 38px;
+}
+
+.heading2 {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: lightgray;
+  text-align: center;
+}
