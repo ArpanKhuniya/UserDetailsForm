@@ -12,10 +12,10 @@
     <div class="form">
       <h2 class="heading2">Enter User Details</h2>
 
-      <form action="" class="userDetailsForm">
+      <form action="" id="userDetailsForm">
         <div class="formElement">
           <label for="firstName">First Name:</label>
-          <input type="text" id="firstName" name="firstName" />
+          <input type="text" id="firstName" class="input" name="firstName" />
         </div>
         <div class="formElement">
           <label for="lastName">Last Name:</label>
@@ -23,14 +23,41 @@
         </div>
         <div class="formElement">
           <label for="phoneNumber">Phone Number:</label>
-          <input type="number" id="phoneNumber" name="phoneNumber" />
+          <input type="tel" id="phoneNumber" name="phoneNumber" />
         </div>
-        <input
-          type="submit"
-          name="submit"
-          id="submit"
-          onclick="updateUserDetailsTable()"
-        />
+        <div class="formElement">
+          <label for="age">Age:</label>
+          <input type="text" id="age" name="age">
+        </div>
+        <div class="formElement">
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city">
+        </div>
+        <div class="formElement">
+          <label for="state">State:</label>
+          <input type="text" id="state" name="state">
+        </div>
+        <div class="formElement">
+          <label for="country">Country:</label>
+          <input type="text" id="country" name="country">
+        </div>
+        <div class="formElement">
+          <label for="school">School:</label>
+          <input type="text" id="school" name="school">
+        </div>
+        <div class="formElement">
+          <label for="gender">Gender:</label>
+          <input type="text" id="gender" name="gender">
+        </div>
+        <div class="formElement">
+          <label for="disability">Disability:</label>
+          <input type="text" id="disability" name="disability">
+        </div>
+        <div class="formElement">
+          <label for="martial-status">Martial-Status:</label>
+          <input type="text" id="martial-status" name="martial-status">
+        </div>
+        <button id="button" type="button" onclick="updateUserDetailsTable()">Submit</button>
       </form>
     </div>
 

@@ -1,15 +1,14 @@
-.userDetailsForm {
-  display: block;
-}
 
-.form {
-  margin: 0px 38%;
+#userDetailsForm {
+  margin: 0px ;
   padding: 0px 40px;
   border: 1px solid black;
   border-radius: 3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-#submit {
+#button {
   margin: 30px 80px;
 }
 
