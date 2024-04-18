@@ -1,25 +1,69 @@
+*{
+  font-family: "Roboto" , sans-serif;
+}
 
-#userDetailsForm {
-  margin: 0px ;
+body{
+  background-color: white;
+}
+
+.form {
+  margin: 40px 350px ;
   padding: 0px 40px;
   border: 1px solid black;
   border-radius: 3%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 30px;
+  background: white;
+}
+
+.gridWithThreeColumns{
+  display: inline; 
 }
 
 #button {
-  margin: 30px 80px;
+  margin: 30px 270px ;
+  padding: 15px 150px;
+  background: #1abc9c;
+  color: #FFF;
+  font-weight: 700;
+}
+
+#button:hover , button:active{
+  background: #109177;
+ 
 }
 
 .formElement {
-  margin: 25px;
+  width: 300px;
+  margin: 10px 190px;
+  padding: 10px 0;
+}
+
+.formElement input,select{
+  width: 100%;
+  
+}
+
+h3{
+  text-align: center;
+}
+
+.personalDetails{
+  background-color: #EDF2F4;
+  margin: 40px 100px 60px 100px;
+  border-radius: 10px;
+  padding: 15px 0 80px 0;
+  
 }
 
 #userDetailsTable {
-  margin: 50px 30%;
+  margin: 40px 30px;
   border: 1px solid black;
   border-collapse: collapse;
+  background: #f4f7f8;
+}
+
+h1{
+  text-align: center;
 }
 
 td,
@@ -28,9 +72,43 @@ th {
   padding: 5px 38px;
 }
 
+tr:nth-child(even){
+  background-color:#17C3B2 ;
+}
+
+.form .heading2 {
+  border: 1px solid black;
+  border-radius: 3px;
+  background: #f4f7f8;
+  text-align: center;
+  padding: 15px;
+  margin: 0px 200px;
+  
+}
 .heading2 {
   border: 1px solid black;
   border-radius: 3px;
-  background-color: lightgray;
+  background: #f4f7f8;
   text-align: center;
+  padding: 15px;
+  margin: 50px 200px;
+  
+}
+
+.gender{
+  display: flex;
+  margin: 0px 10px;
+}
+
+#female{
+  margin-right: 15px;
+}
+
+#flexGenderInputField{
+  display: flex;
+  
+}
+
+.genderField{
+  margin: 25px 190px;
 }
