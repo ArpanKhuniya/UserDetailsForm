@@ -62,8 +62,6 @@ function updateUserDetailsTable() {
     document.getElementById("submitSuccessful").style.display = "block";
     // To reset form input fields.
     console.log(document.getElementById("userDetailsForm"));
-    document.getElementById("userDetailsForm").reset();
-
     return;
   } else {
     RemoveErrorMessageAge();
@@ -141,6 +139,7 @@ function ValidatePhoneNumber(fieldNamesWithValue) {
   if (fieldNamesWithValue["phoneNumber"].toString().length != 10) {
     document.getElementById("errorPhoneNumber").style.display = "block";
     document.getElementById("errorPhoneNumber").style.color = "red";
+    LoadSection1();
     return false;
   }
   return true;
@@ -150,6 +149,7 @@ function ValidateAgeGreaterThanZero(fieldNamesWithValue) {
   if (fieldNamesWithValue["age"] <= 0) {
     document.getElementById("errorAge").style.display = "block";
     document.getElementById("errorAge").style.color = "red";
+    LoadSection2();
     return false;
   }
   return true;
@@ -159,6 +159,7 @@ function ValidateEmail(fieldNamesWithValue) {
   if (fieldNamesWithValue["email"].includes("@") == false) {
     document.getElementById("errorEmail").style.display = "block";
     document.getElementById("errorEmail").style.color = "red";
+    LoadSection3();
     return false;
   }
   return true;
@@ -223,4 +224,10 @@ function LoadSection3() {
   document.getElementById("section1").style.display = "none";
   document.getElementById("section2").style.display = "none";
   document.getElementById("section3").style.display = "block";
+}
+
+function ClearForm(fieldNames) {
+  for (let field in fieldNames) {
+    document.getElementById(field).value = " ";
+  }
 }
