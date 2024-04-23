@@ -61,7 +61,7 @@ function updateUserDetailsTable() {
     // Successful message.
     document.getElementById("submitSuccessful").style.display = "block";
     // To reset form input fields.
-    console.log(document.getElementById("userDetailsForm"));
+    document.getElementById("userDetailsForm").reset();
     return;
   } else {
     RemoveErrorMessageAge();
