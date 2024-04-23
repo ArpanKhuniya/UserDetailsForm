@@ -1,54 +1,22 @@
-*{
-  font-family: "Roboto" , sans-serif;
+* {
+  font-family: "Roboto", sans-serif;
 }
 
-body{
-  background-color: white;
+body {
+  background-color: #bbdefb;
 }
 
-.form { 
+.form {
   border: 1px solid black;
   border-radius: 3%;
-  background: white;
+  background: #bbdefb;
   width: 100%;
 }
 
-.section1 , .section2, .section3{
-  background-color: #BBDEFB;
-  margin: auto;
-  border-radius: 3%;
-  padding-bottom: 20px;
-  width: 80%;
-} 
-
-.section1:hover, .section2:hover,.section3:hover {
-  background-color: #2196F3;
-  animation-name: IncreaseWidthAndColorSection;
-  animation-duration: 1s;
-  width: 88%;
-}
-
-
-#button {
-  margin: 2% 40% ;
-  padding: 15px 150px;
-  background: #64B5F6;
-  color: #FFF;
-  font-weight: 700;
-  width: 20%;
-}
-#button1{
-  position: relative;
-  left: 660px;
-  padding: 15px 135px;
-  background: #1abc9c;
-  color: #FFF;
-  font-weight: 700;
-}
-
-#button:hover , button:active , #button1:hover , #button1:active {
-  animation-name: IncreaseWidthAndColorButton;
-  animation-duration: 1s;
+.flexbox {
+  display: flex;
+  width: 100%;
+  margin-left: 30%;
 }
 
 .formElement {
@@ -57,21 +25,20 @@ body{
   padding: 10px 0;
 }
 
-.formElement input,select{
+.formElement input,
+select {
   width: 100%;
-  
 }
 
-h3{
+h3 {
   text-align: center;
 }
 
-.personalDetails{
-  background-color: #EDF2F4;
+.personalDetails {
+  background-color: #edf2f4;
   margin: 40px 100px 60px 100px;
   border-radius: 10px;
   padding: 15px 0 80px 0;
-  
 }
 
 #userDetailsTable {
@@ -81,12 +48,7 @@ h3{
   background: #f4f7f8;
 }
 
-#gridOfThree{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-h1{
+h1 {
   text-align: center;
 }
 
@@ -96,95 +58,186 @@ th {
   padding: 5px 38px;
 }
 
-th{
-  background-color:#17C3B2 ;
+th {
+  background-color: #17c3b2;
 }
 
-.form .heading2 {
-  border: 1px solid black;
-  border-radius: 3px;
-  background: #BBDEFB;
-  text-align: center;
-  padding: 15px;
-  margin: 2% 10%;
-  
-}
-.heading2 {
-  border: 1px solid black;
-  border-radius: 3px;
-  background: #BBDEFB;
-  text-align: center;
-  padding: 15px;
-  margin: 50px 200px;
-  
-}
-
-.gender{
+.gender {
   display: flex;
   margin: 0px 10px;
 }
 
-#flexGenderInputField{
+#flexGenderInputField {
   display: flex;
   margin: 6% 0%;
 }
 
-#submitSuccessful{
-  display: none; 
+#submitSuccessful {
+  display: none;
   color: green;
   margin-bottom: 20px;
+}
+/* Section */
+
+#section1,
+#section2,
+#section3 {
+  display: block;
+  background-color: white;
+  margin: auto;
+  border-radius: 3%;
+  padding: 2% 0;
+  width: 50%;
+  margin-bottom: 5%;
+  border: 1px black solid;
+}
+#section2,
+#section3 {
+  display: none;
+}
+
+#section1:hover,
+#section2:hover,
+#section3:hover {
+  background-color: white;
+  animation-name: IncreaseWidthAndColorSection;
+  animation-duration: 1s;
+  width: 52%;
 }
 
 /* Sorting */
 
-.sortOption{
+.sortOption {
   list-style-type: none;
   display: none;
 }
 
-#sortingOptions{
-  margin: 30px 40% ;
-  padding: 5px 100px;
-  background: #1abc9c;
-  color: #FFF;
+#sortingOptions {
+  background: white;
+  color: black;
   font-weight: 700;
   border: 1px black solid;
   border-radius: 5px;
   display: flex;
+  width: 30%;
+  margin: 2% 35%;
 }
 
-#sortingOptions:hover{
+#sortingOptions:hover {
   margin: 30px 20%;
   padding: 10px 200px;
   color: black;
 }
 
-#sortingOptions:hover > .sortOption{
+#sortingOptions:hover > .sortOption {
   display: flex;
-  list-style-type: none; 
+  list-style-type: none;
   margin: 12px 20px;
 }
 
-.filterBy{
+.filterBy {
   border: 1px black solid;
 }
 
-.sortButton{
+#sortingOptions p {
+  background-color: white;
+  padding: 5%;
+  /* border: 1px black solid */
+}
+
+/*  Buttons */
+
+#button {
+  margin: 2% 40%;
+  padding: 15px 150px;
+  background: #64b5f6;
+  color: #fff;
+  font-weight: 700;
+  width: 20%;
+}
+#button1 {
+  position: relative;
+  left: 660px;
+  padding: 15px 135px;
+  background: #1abc9c;
+  color: #fff;
+  font-weight: 700;
+}
+
+#button:hover,
+button:active,
+#button1:hover,
+#button1:active {
+  animation-name: IncreaseWidthAndColorButton;
+  animation-duration: 1s;
+}
+
+#button-next {
+  margin: 2% 40%;
+  padding: 2% 5% 2% 5%;
+  background: #64b5f6;
+  color: #fff;
+  font-weight: 700;
+  width: 20%;
+}
+
+#button-next2,
+#button-previous2 {
+  padding: 2% 5% 2% 5%;
+  background: #64b5f6;
+  color: #fff;
+  font-weight: 700;
+  width: 20%;
+}
+
+.sortButton {
   background-color: #109177;
   margin: 2px 10px;
 }
 
+/* Headings */
 
-/* Animations */
-@keyframes IncreaseWidthAndColorSection{
-  from{width: 80%;}
-  to{width: 88%;}
-  from{background-color: #64B5F6;}
-  to{background-color: #2196F3;}
+.form .heading2 {
+  border: 1px solid black;
+  border-radius: 3px;
+  background: white;
+  text-align: center;
+  padding: 15px;
+  margin: 2% 10%;
+}
+.heading2 {
+  border: 1px solid black;
+  border-radius: 3px;
+  background: white;
+  text-align: center;
+  padding: 15px;
+  margin: 50px 200px;
 }
 
-@keyframes IncreaseWidthAndColorButton{
-  
-  from{background-color: #64B5F6;}
-  to{background-color: #2196F3;}
+.sectionHead {
+  border: 1px black solid;
+  background-color: #64b5f6;
+  width: 50%;
+  margin: auto;
+  padding: 2% 0%;
+  border-radius: 3%;
+}
+
+/* Animations */
+@keyframes IncreaseWidthAndColorSection {
+  from {
+    width: 50%;
+  }
+  to {
+    width: 52%;
+  }
+}
+
+@keyframes IncreaseWidthAndColorButton {
+  from {
+    background-color: #64b5f6;
+  }
+  to {
+    background-color: #2196f3;
+  }
 }
