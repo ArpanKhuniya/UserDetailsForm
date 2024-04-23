@@ -26,10 +26,17 @@ body{
   color: #FFF;
   font-weight: 700;
 }
+#button1{
+  position: relative;
+  left: 660px;
+  padding: 15px 135px;
+  background: #1abc9c;
+  color: #FFF;
+  font-weight: 700;
+}
 
-#button:hover , button:active{
+#button:hover , button:active , #button1:hover , #button1:active {
   background: #109177;
- 
 }
 
 .formElement {
@@ -72,7 +79,7 @@ th {
   padding: 5px 38px;
 }
 
-tr:nth-child(even){
+th{
   background-color:#17C3B2 ;
 }
 

@@ -1,75 +1,171 @@
 
-
+var data=[];
 function updateUserDetailsTable() {
-
   // Html form field names.
-  let fieldNames=["firstName","lastName","phoneNumber","email","age","city","state","country","gender","disability","marital-status","aadharNumber"];
+    let fieldNames=["firstName","lastName","phoneNumber","email","age","city","state","country","gender","disability","marital-status","address"];
 
-  // Creating an object of all fields with their values.
-  let fieldNamesWithValue={};
-  fieldNames.forEach(field => {
-    fieldNamesWithValue[field]=document.getElementById(field).value.trim();
+    // Creating an object of all fields with their values.
+    let fieldNamesWithValue={};
+    fieldNames.forEach(field => {
+      fieldNamesWithValue[field]=document.getElementById(field).value.trim();
+    });
+    data.push(fieldNamesWithValue);
+
+    //Validations
+    let executionStatus = ValidateNullInputs(fieldNamesWithValue) && ValidatePhoneNumber(fieldNamesWithValue) && ValidateAgeGreaterThanZero(fieldNamesWithValue)
+    && ValidateEmail(fieldNamesWithValue);
+    if(executionStatus == true){
+      // Storing already present content in the table in userDetialsTableContent.
+      let userDetialsTableContent =
+        document.getElementById("userDetailsTable").innerHTML + "<tr>";
+
+      for (let field in fieldNamesWithValue){
+        userDetialsTableContent+=`<td>${fieldNamesWithValue[field]}</td>`  
+      }
+      userDetialsTableContent+="</td>";
+
+      // Updating the table content.
+      document.getElementById("userDetailsTable").innerHTML = userDetialsTableContent;
+
+      // Removing error messages
+      RemoveErrorMessageAge();
+      RemoveErrorMessageEmail();
+      RemoveErrorMessagePhoneNumber();
+
+      // To reset form input fields.
+      document.getElementById('userDetailsForm').reset();
+      return;
+    }
+    else{
+      RemoveErrorMessageAge();
+      RemoveErrorMessageEmail();
+      RemoveErrorMessagePhoneNumber();
+      
+      return;
+    }
+}
+
+
+// Sorting Functionality
+function SortListOfUsers(){
+  let sortedUserData = data.sort(function (a, b) {
+    if (a.firstName < b.firstName) {
+      return -1;
+    }
+    if (a.firstName > b.firstName) {
+      return 1;
+    }
+    return 0;
   });
-  
-  //Validations
-  let executionStatus = ValidateNullInputs(fieldNamesWithValue) && ValidatePhoneNumber(fieldNamesWithValue) && ValidateAgeGreaterThanZero(fieldNamesWithValue)
-  && ValidateEmail(fieldNamesWithValue);
-  if(executionStatus!=true){
-    return alert(executionStatus);
-  }
-  
-  // To reset form input fields.
-  document.getElementById('userDetailsForm').reset();
 
-  // Storing already present content in the table in userDetialsTableContent.
-  let userDetialsTableContent =
-    document.getElementById("userDetailsTable").innerHTML + "<tr>";
+  let userDetialsTableContent = document.getElementById("userDetailsTable").innerHTML ;
+  userDetialsTableContent =`<table id="userDetailsTable">
+    <tr class="tableRow">
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Gender</th>
+      <th>Disability</th>
+      <th>Marital-Status</th>
+      <th>Aadhar Number</th>
+    </tr>
+    <tr>`;
 
-  for (let field in fieldNamesWithValue){
-    userDetialsTableContent+=`<td>${fieldNamesWithValue[field]}</td>`  
-  }
-  userDetialsTableContent+="</td>";
+    sortedUserData.forEach(userObject=>{
+      for(let fieldValue in userObject){
+        userDetialsTableContent += `<td>${userObject[fieldValue]}</td>`;
+      }
+      userDetialsTableContent+=`</tr><tr>`;
+    })
 
-  // Updating the table content.
-  document.getElementById("userDetailsTable").innerHTML = userDetialsTableContent;
+    document.getElementById("userDetailsTable").innerHTML = userDetialsTableContent;
 }
 
 // Validations
 
 // Validation Messages
 
-let nullTextInput = "Please enter a value at ";
-let phoneNumberIsNotEqualToStandardSize = "Phone number should be of 10 digits";
-let ageLessThanZero = "Age cannot be less than zero";
-let emailError="Email should contain @";
-
-
 function ValidateNullInputs(fieldNamesWithValueObject){
+  let count=0;
   for (let field in fieldNamesWithValueObject){
     if(fieldNamesWithValueObject[field].length === 0){
-        return (nullTextInput+field);
+        count+=1;
+        let errorName = `error${field}`;
+        document.getElementById(errorName).style.display='block';
+        document.getElementById(errorName).style.color = 'red';
     }
   }
+  if(count>0){return false;}
   return true;
 }
 
 function ValidatePhoneNumber(fieldNamesWithValue){
   if(fieldNamesWithValue["phoneNumber"].toString().length != 10){
-    return phoneNumberIsNotEqualToStandardSize;
+    document.getElementById('errorPhoneNumber').style.display='block';
+    document.getElementById('errorPhoneNumber').style.color = 'red';
+    return false;
   }
   return true;
 }
 
 function ValidateAgeGreaterThanZero(fieldNamesWithValue){
   if(fieldNamesWithValue["age"]<=0){
-    return ageLessThanZero;
+    document.getElementById('errorAge').style.display='block';
+    document.getElementById('errorAge').style.color = 'red';
+    return false;
   }
   return true;
 }
 
 function ValidateEmail(fieldNamesWithValue){
   if(fieldNamesWithValue["email"].includes("@") == false){
-    return emailError;
+    document.getElementById('errorEmail').style.display='block';
+    document.getElementById('errorEmail').style.color = 'red';
+    return false;
   }
   return true;
+}
+
+// Removing error messages
+
+function RemoveAllErrorMessages(fieldNamesWithValue){
+  for (let field in fieldNamesWithValue){
+    if(field !== 'disability' && field !== 'marital-status'){
+      let lengthOfWord=document.getElementById(field).value;
+      if(lengthOfWord.length > 0){
+        let errorName = `error${field}`;
+        document.getElementById(errorName).style.display='none';
+      }
+    }
+  }
+}
+
+function RemoveErrorMessagePhoneNumber(){
+  let phValue = document.getElementById('phoneNumber').value;
+  if(phValue.toString().length == 10){
+    document.getElementById('errorPhoneNumber').style.display='none';
+  }
+}
+
+function RemoveErrorMessageAge(){
+  let ageValue=document.getElementById('age').value
+  if(ageValue>0){
+    document.getElementById('errorAge').style.display='none';
+  }
+}
+
+function RemoveErrorMessageEmail(){
+  let emailValue=document.getElementById('email').value;
+  if(emailValue.includes("@") == true){
+    document.getElementById('errorEmail').style.display='none';
+  }
+}
+
+function RemoveErrorMessageOnTyping(fieldname){
+  document.getElementById(fieldname).style.display='none';
 }
