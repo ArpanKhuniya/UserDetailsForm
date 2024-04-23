@@ -7,7 +7,13 @@ function updateUserDetailsTable() {
     // Creating an object of all fields with their values.
     let fieldNamesWithValue={};
     fieldNames.forEach(field => {
-      fieldNamesWithValue[field]=document.getElementById(field).value.trim();
+      if(document.getElementById(field).value.trim()!=""){
+        let valueToAddToData = document.getElementById(field).value.trim().toLowerCase();
+        fieldNamesWithValue[field] = valueToAddToData[0].toUpperCase() + valueToAddToData.substr(1,valueToAddToData.length-1);
+      }
+      else{
+        fieldNamesWithValue[field]=document.getElementById(field).value.trim();
+      }
     });
     data.push(fieldNamesWithValue);
 
@@ -34,25 +40,26 @@ function updateUserDetailsTable() {
 
       // To reset form input fields.
       document.getElementById('userDetailsForm').reset();
+      document.getElementById('submitSuccessful').style.display="block"
       return;
     }
     else{
       RemoveErrorMessageAge();
       RemoveErrorMessageEmail();
       RemoveErrorMessagePhoneNumber();
-      
+      data.pop();
       return;
     }
 }
 
 
-// Sorting Functionality
-function SortListOfUsers(){
+// Sorting Functionality on first name
+function SortListOfUsers(fieldName){
   let sortedUserData = data.sort(function (a, b) {
-    if (a.firstName < b.firstName) {
+    if (a[fieldName] < b[fieldName]) {
       return -1;
     }
-    if (a.firstName > b.firstName) {
+    if (a[fieldName] > b[fieldName]) {
       return 1;
     }
     return 0;
@@ -84,6 +91,7 @@ function SortListOfUsers(){
     })
 
     document.getElementById("userDetailsTable").innerHTML = userDetialsTableContent;
+    RemoveSuccessfulMessage();
 }
 
 // Validations
@@ -168,4 +176,8 @@ function RemoveErrorMessageEmail(){
 
 function RemoveErrorMessageOnTyping(fieldname){
   document.getElementById(fieldname).style.display='none';
+}
+
+function RemoveSuccessfulMessage(){
+  document.getElementById("submitSuccessful").style.display='none';
 }
