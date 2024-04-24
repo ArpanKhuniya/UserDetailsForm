@@ -1,4 +1,6 @@
 var data = [];
+var count = 0;
+
 function updateUserDetailsTable() {
   // Html form field names.
   let fieldNames = [
@@ -36,22 +38,20 @@ function updateUserDetailsTable() {
   //Validations
   let executionStatus =
     ValidateNullInputs(fieldNamesWithValue) &&
-    ValidatePhoneNumber(fieldNamesWithValue) &&
-    ValidateAgeGreaterThanZero(fieldNamesWithValue) &&
-    ValidateEmail(fieldNamesWithValue);
+    ValidatePhoneNumber() &&
+    ValidateAgeGreaterThanZero() &&
+    ValidateEmail();
   if (executionStatus == true) {
     // Storing already present content in the table in userDetialsTableContent.
     let userDetialsTableContent =
-      document.getElementById("userDetailsTable").innerHTML + "<tr>";
+      document.getElementById("userListGrid").innerHTML;
 
     for (let field in fieldNamesWithValue) {
-      userDetialsTableContent += `<td>${fieldNamesWithValue[field]}</td>`;
+      userDetialsTableContent += `<div class="userListDivData"><h5 class="userListData">${fieldNamesWithValue[field]}</h5></div>`;
     }
-    userDetialsTableContent += "</td>";
 
     // Updating the table content.
-    document.getElementById("userDetailsTable").innerHTML =
-      userDetialsTableContent;
+    document.getElementById("userListGrid").innerHTML = userDetialsTableContent;
 
     // Removing error messages
     RemoveErrorMessageAge();
@@ -60,8 +60,10 @@ function updateUserDetailsTable() {
 
     // Successful message.
     document.getElementById("submitSuccessful").style.display = "block";
+
     // To reset form input fields.
     document.getElementById("userDetailsForm").reset();
+    RemoveAllSections();
     return;
   } else {
     RemoveErrorMessageAge();
@@ -85,33 +87,51 @@ function SortListOfUsers(fieldName) {
   });
 
   let userDetialsTableContent =
-    document.getElementById("userDetailsTable").innerHTML;
-  userDetialsTableContent = `<table id="userDetailsTable">
-    <tr class="tableRow">
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Phone Number</th>
-      <th>Email</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Country</th>
-      <th>Gender</th>
-      <th>Disability</th>
-      <th>Marital-Status</th>
-      <th>Aadhar Number</th>
-    </tr>
-    <tr>`;
+    document.getElementById("userListGrid").innerHTML;
+  userDetialsTableContent = `<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('firstName')">First Name</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('lastName')">Last Name</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('phoneNumber')">Phone Number</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('email')">Email</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('age')">Age</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('city')">City</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('state')">State</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('country')">Country</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('gender')">Gender</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('disability')">Disability</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('marital-status')">Marital-Status</a>
+</div>
+<div class="userListDiv">
+  <a class="userListHead" onclick="SortListOfUsers('address')">Address</a>
+</div>`;
 
   sortedUserData.forEach((userObject) => {
     for (let fieldValue in userObject) {
-      userDetialsTableContent += `<td>${userObject[fieldValue]}</td>`;
+      userDetialsTableContent += `<div class="userListDivData"><h5 class="userListData">${userObject[fieldValue]}</h5></div>`;
     }
-    userDetialsTableContent += `</tr><tr>`;
   });
 
-  document.getElementById("userDetailsTable").innerHTML =
-    userDetialsTableContent;
+  document.getElementById("userListGrid").innerHTML = userDetialsTableContent;
   RemoveSuccessfulMessage();
 }
 
@@ -132,37 +152,69 @@ function ValidateNullInputs(fieldNamesWithValueObject) {
   if (count > 0) {
     return false;
   }
+  document.getElementById("button-next2").disabled = false;
   return true;
 }
 
-function ValidatePhoneNumber(fieldNamesWithValue) {
-  if (fieldNamesWithValue["phoneNumber"].toString().length != 10) {
+function ValidateInputForNameField(field) {
+  let charRegex = /^[a-zA-Z]+$/;
+  if (field === "firstName" || field === "lastName") {
+    let nameVal = document.getElementById(field).value;
+    if (charRegex.test(nameVal) == false) {
+      document.getElementById(`error${field}`).innerHTML =
+        "Name should contain only alphabets.";
+      document.getElementById(`error${field}`).style.display = "block";
+      document.getElementById(`error${field}`).style.color = "red";
+      return false;
+    }
+  }
+  if (field === "city" || field === "state" || field === "country") {
+    if (charRegex.test(document.getElementById(field).value) == false) {
+      document.getElementById(
+        `error${field}`
+      ).innerHTML = `${field} should contain only alphabets.`;
+      document.getElementById(`error${field}`).style.display = "block";
+      document.getElementById(`error${field}`).style.color = "red";
+      return false;
+    }
+  }
+}
+
+function ValidatePhoneNumber() {
+  if (document.getElementById("phoneNumber").value.toString().length === 10) {
+    RemoveErrorMessagePhoneNumber();
+    return true;
+  } else {
     document.getElementById("errorPhoneNumber").style.display = "block";
     document.getElementById("errorPhoneNumber").style.color = "red";
-    LoadSection1();
-    return false;
   }
-  return true;
 }
 
-function ValidateAgeGreaterThanZero(fieldNamesWithValue) {
-  if (fieldNamesWithValue["age"] <= 0) {
+function ValidateAgeGreaterThanZero() {
+  if (
+    document.getElementById("age").value <= 0 ||
+    document.getElementById("age").value > 150
+  ) {
     document.getElementById("errorAge").style.display = "block";
     document.getElementById("errorAge").style.color = "red";
     LoadSection2();
-    return false;
+  } else {
+    RemoveErrorMessageAge();
+    return true;
   }
-  return true;
 }
 
-function ValidateEmail(fieldNamesWithValue) {
-  if (fieldNamesWithValue["email"].includes("@") == false) {
+function ValidateEmail() {
+  if (
+    document.getElementById("email").value.includes("@") == false ||
+    document.getElementById("email").value.includes(".") == false
+  ) {
     document.getElementById("errorEmail").style.display = "block";
     document.getElementById("errorEmail").style.color = "red";
-    LoadSection3();
-    return false;
+  } else {
+    RemoveErrorMessageEmail();
+    return true;
   }
-  return true;
 }
 
 // Removing error messages
@@ -226,8 +278,13 @@ function LoadSection3() {
   document.getElementById("section3").style.display = "block";
 }
 
-function ClearForm(fieldNames) {
-  for (let field in fieldNames) {
-    document.getElementById(field).value = " ";
-  }
+function RemoveAllSections(){
+  document.getElementById("section1").style.display = "none";
+  document.getElementById("section2").style.display = "none";
+  document.getElementById("section3").style.display = "none";
+  document.getElementById("section4").style.display = "block";
+}
+
+function RemoveOkButton(){
+  document.getElementById("submitSuccessful").style.display='none';
 }

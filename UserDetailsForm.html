@@ -1,283 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./UserDetailsForm.css" />
-    <script src="./userDetailsForm.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <title>User Details Form</title>
-  </head>
 
-  <body>
-    <!-- User Details Form -->
-    <form class="form">
-      <h2 class="heading2">Enter User Details</h2>
-      
-      <form id="userDetailsForm">
-          
-        <div id="section1">
-          <h3 class="sectionHead">Personal Details</h3>
-          <!-- First Name -->
-          <div class="formElement">
-            <label for="firstName">First Name:</label>
-            <input
-              type="text"
-              id="firstName"
-              class="input"
-              name="firstName"
-              onkeydown="RemoveErrorMessageOnTyping('errorfirstName'),RemoveSuccessfulMessage()"
-            />
-            <span id="errorfirstName" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <!-- Last Name -->
-          <div class="formElement">
-            <label for="lastName">Last Name:</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              onkeydown="RemoveErrorMessageOnTyping('errorlastName')"
-            />
-            <span id="errorlastName" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <!-- Phone Number -->
-          <div class="formElement">
-            <label for="phoneNumber">Phone Number:</label>
-            <input
-              type="number"
-              id="phoneNumber"
-              name="phoneNumber"
-              onkeydown="RemoveErrorMessageOnTyping('errorphoneNumber')"
-            />
-            <span id="errorPhoneNumber" style="display: none"
-              >Please enter 10 digit phone number.</span
-            >
-            <span id="errorphoneNumber" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <!-- Email -->
-          <div class="formElement">
-            <label for="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onkeydown="RemoveErrorMessageOnTyping('erroremail')"
-            />
-            <span id="errorEmail" style="display: none"
-              >Email should have @.</span
-            >
-            <span id="erroremail" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <button type="button" id="button-next" onclick="LoadSection2()">Next</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./UserDetailsForm.css" />
+  <script src="./userDetailsForm.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <title>User Details Form</title>
+</head>
 
-        <div id="section2">
-          <h3 class="sectionHead">Personal Details</h3>
-          <!-- Age -->
-          <div class="formElement">
-            <label for="age">Age:</label>
-            <input
-              type="number"
-              id="age"
-              name="age"
-              onkeydown="RemoveErrorMessageOnTyping('errorage')"
-            />
-            <span id="errorAge" style="display: none"
-              >Age should be greater than 0</span
-            >
-            <span id="errorage" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <!-- Disability -->
-          <div class="formElement">
-            <label for="disability">Disability:</label>
-            <select name="disability" id="disability">
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-          </div>
-          <!-- Marital Status -->
-          <div class="formElement">
-            <label for="marital-status">Marital-Status:</label>
-            <select name="marital-status" id="marital-status">
-              <option value="single">Single</option>
-              <option value="married">Married</option>
-              <option value="others">Others</option>
-            </select>
-          </div>
-          <!-- Gender -->
-          <div class="formElement genderField">
-            <div id="flexGenderInputField">
-              <label for="gender">Gender:</label>
-              <div class="gender">
-                <label for="male">Male</label>
-                <input
-                  type="radio"
-                  value="Male"
-                  name="gender"
-                  id="gender"
-                  checked
-                />
-              </div>
-              <div class="gender">
-                <label for="female">Female</label>
-                <input
-                  type="radio"
-                  value="Female"
-                  id="female"
-                  name="gender"
-                  id="gender"
-                />
-              </div>
-              <span id="errorgender" style="display: none"
-                >Please enter a value.</span
-              >
-            </div>
-          </div>
-          <div class="flexbox">
-            <button type="button" id="button-previous2" onclick="LoadSection1()">Previous</button>
-            <button type="button" id="button-next2" onclick="LoadSection3()">Next</button>
-          </div>
-        </div>
-
-        <div id="section3">
-          <h3 class="sectionHead">Address Details</h3>
-          <!-- Address -->
-          <div class="formElement">
-            <label for="address">Address: </label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              onkeydown="RemoveErrorMessageOnTyping('erroraddress')"
-            />
-            <span id="erroraddress" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <!-- City -->
-          <div class="formElement">
-            <label for="city">City:</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              onkeydown="RemoveErrorMessageOnTyping('errorcity')"
-            />
-            <span id="errorcity" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <!-- State -->
-          <div class="formElement">
-            <label for="state">State:</label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              onkeydown="RemoveErrorMessageOnTyping('errorstate')"
-            />
-            <span id="errorstate" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <!-- Country -->
-          <div class="formElement">
-            <label for="country">Country:</label>
-            <input
-              type="text"
-              id="country"
-              name="country"
-              onkeydown="RemoveErrorMessageOnTyping('errorcountry')"
-            />
-            <span id="errorcountry" style="display: none"
-              >Please enter a value.</span
-            >
-          </div>
-          <div class="flexbox">
-            <button type="button" id="button-previous2" onclick="LoadSection2()">Previous</button>
-            <button type="button" id="button-next2" onclick="updateUserDetailsTable(),LoadSection1()">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <h3 id="submitSuccessful">Your details have been recorded.</h3>
-
-    <hr />
-
-    <table id="userDetailsTable">
-      <h2 class="heading2">User Details</h2>
-
-      <div id="sortingOptions">
-        <p>Filter User List by:</p>
-        <ul class="sortOption">
-          <li>
-            <button
-              type="button"
-              class="sortButton"
-              onclick="SortListOfUsers('firstName')"
-            >
-              First Name
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="sortButton"
-              onclick="SortListOfUsers('lastName')"
-            >
-              Last Name
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="sortButton"
-              onclick="SortListOfUsers('age')"
-            >
-              Age
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="sortButton"
-              onclick="SortListOfUsers('country')"
-            >
-              Country
-            </button>
-          </li>
-        </ul>
+<body>
+  <!-- User Details Form -->
+  <div class="div1">
+    <h2 class="heading2">Enter User Details</h2>
+    <form id="userDetailsForm">
+      <div id="submitSuccessful">
+        <h3>Your details have been recorded.</h3>
+        <button type="button" onclick="LoadSection1(),RemoveOkButton()" id="successBtn">Ok</button>
       </div>
-      <tr class="tableRow">
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Phone Number</th>
-        <th>Email</th>
-        <th>Age</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Country</th>
-        <th>Gender</th>
-        <th>Disability</th>
-        <th>Marital-Status</th>
-        <th>Aadhar Number</th>
-      </tr>
-    </table>
-  </body>
+      <div id="section1">
+        <h3 class="sectionHead">Personal Details</h3>
+        <!-- First Name -->
+        <div class="formElement">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" class="input" name="firstName"
+            onkeydown="RemoveErrorMessageOnTyping('errorfirstName'),RemoveSuccessfulMessage()"
+            onkeyup="ValidateInputForNameField('firstName')" />
+          <span id="errorfirstName" style="display: none">Please enter a value.</span>
+        </div>
+        <!-- Last Name -->
+        <div class="formElement">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" onkeydown="RemoveErrorMessageOnTyping('errorlastName')"
+            onkeyup="ValidateInputForNameField('lastName')" />
+          <span id="errorlastName" style="display: none">Please enter a value.</span>
+        </div>
+        <!-- Phone Number -->
+        <div class="formElement">
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="number" id="phoneNumber" name="phoneNumber"
+            onkeydown="RemoveErrorMessageOnTyping('errorphoneNumber')" onkeyup="ValidatePhoneNumber()" />
+          <span id="errorPhoneNumber" style="display: none">Please enter 10 digit phone number.</span>
+          <span id="errorphoneNumber" style="display: none">Please enter a value.</span>
+        </div>
+        <!-- Email -->
+        <div class="formElement">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" onkeydown="RemoveErrorMessageOnTyping('erroremail')"
+            onkeyup="ValidateEmail()" />
+          <span id="errorEmail" style="display: none">Email should have @ and .</span>
+          <span id="erroremail" style="display: none">Please enter a value.</span>
+        </div>
+        <button type="button" id="button-next" onclick="LoadSection2()">Next</button>
+      </div>
+
+      <div id="section2">
+        <h3 class="sectionHead">Personal Details</h3>
+        <!-- Age -->
+        <div class="formElement">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" onkeydown="RemoveErrorMessageOnTyping('errorage')"
+            onkeyup="ValidateAgeGreaterThanZero()" />
+          <span id="errorAge" style="display: none">Age should be greater than 0 and less than 150</span>
+          <span id="errorage" style="display: none">Please enter a value.</span>
+        </div>
+        <!-- Disability -->
+        <div class="formElement">
+          <label for="disability">Disability:</label>
+          <select name="disability" id="disability">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <!-- Marital Status -->
+        <div class="formElement">
+          <label for="marital-status">Marital-Status:</label>
+          <select name="marital-status" id="marital-status">
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        <!-- Gender -->
+        <div class="formElement genderField">
+          <div id="flexGenderInputField">
+            <label for="gender">Gender:</label>
+            <div class="gender">
+              <label for="male">Male</label>
+              <input type="radio" value="Male" name="gender" id="gender" checked />
+            </div>
+            <div class="gender">
+              <label for="female">Female</label>
+              <input type="radio" value="Female" id="female" name="gender" id="gender" />
+            </div>
+            <span id="errorgender" style="display: none">Please enter a value.</span>
+          </div>
+        </div>
+        <div class="flexbox">
+          <button type="button" id="button-previous2" onclick="LoadSection1()">Previous</button>
+          <button type="button" id="button-next2" onclick="LoadSection3()">Next</button>
+        </div>
+      </div>
+
+      <div id="section3">
+        <h3 class="sectionHead">Address Details</h3>
+        <!-- Address -->
+        <div class="formElement">
+          <label for="address">Address: </label>
+          <input type="text" id="address" name="address" onkeydown="RemoveErrorMessageOnTyping('erroraddress')" />
+          <span id="erroraddress" style="display: none">Please enter a value.</span>
+        </div>
+        <!-- City -->
+        <div class="formElement">
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" onkeydown="RemoveErrorMessageOnTyping('errorcity')"
+            onkeyup="ValidateInputForNameField('city')" />
+          <span id="errorcity" style="display: none">Please enter a value.</span>
+        </div>
+        <!-- State -->
+        <div class="formElement">
+          <label for="state">State:</label>
+          <input type="text" id="state" name="state" onkeydown="RemoveErrorMessageOnTyping('errorstate')"
+            onkeyup="ValidateInputForNameField('state')" />
+          <span id="errorstate" style="display: none">Please enter a value.</span>
+        </div>
+        <!-- Country -->
+        <div class="formElement">
+          <label for="country">Country:</label>
+          <input type="text" id="country" name="country" onkeydown="RemoveErrorMessageOnTyping('errorcountry')"
+            onkeyup="ValidateInputForNameField('country')" />
+          <span id="errorcountry" style="display: none">Please enter a value.</span>
+        </div>
+        <div class="flexbox">
+          <button type="button" id="button-previous2" onclick="LoadSection2()">Previous</button>
+          <button type="button" id="button-next2" onclick="updateUserDetailsTable(); LoadSection1()">Submit</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <hr />
+
+  <div class="div1">
+    <h2 class="heading2">User Details</h2>
+    <div id="userListGrid">
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('firstName')">First Name</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('lastName')">Last Name</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('phoneNumber')">Phone Number</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('email')">Email</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('age')">Age</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('city')">City</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('state')">State</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('country')">Country</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('gender')">Gender</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('disability')">Disability</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('marital-status')">Marital-Status</a>
+      </div>
+      <div class="userListDiv">
+        <a class="userListHead" onclick="SortListOfUsers('address')">Address</a>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

@@ -3,14 +3,13 @@
 }
 
 body {
-  background-color: #bbdefb;
+  background-color: white;
 }
 
-.form {
-  border: 1px solid black;
-  border-radius: 3%;
-  background: #bbdefb;
-  width: 100%;
+.div1{
+  background-color: #1D3557;
+  border-radius: 5%;
+  padding: 3%;
 }
 
 .flexbox {
@@ -30,38 +29,6 @@ select {
   width: 100%;
 }
 
-h3 {
-  text-align: center;
-}
-
-.personalDetails {
-  background-color: #edf2f4;
-  margin: 40px 100px 60px 100px;
-  border-radius: 10px;
-  padding: 15px 0 80px 0;
-}
-
-#userDetailsTable {
-  margin: 40px 30px;
-  border: 1px solid black;
-  border-collapse: collapse;
-  background: #f4f7f8;
-}
-
-h1 {
-  text-align: center;
-}
-
-td,
-th {
-  border: 1px solid black;
-  padding: 5px 38px;
-}
-
-th {
-  background-color: #17c3b2;
-}
-
 .gender {
   display: flex;
   margin: 0px 10px;
@@ -74,21 +41,73 @@ th {
 
 #submitSuccessful {
   display: none;
-  color: green;
+  color: black;
+  background-color: #A8DADC;
   margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid black;
+  width: 20%;
+  margin: auto;
+  margin-bottom: 2%;
+  padding: 2%;
+  border-radius: 3%;
+  animation-duration: 5s;
 }
+
+#successBtn{
+  color: black;
+  font-weight: 500;
+  padding: 3% 10%;
+  background-color: #F1FAEE;
+  border-radius: 5%;
+}
+
+/* User List Grid */
+
+#userListGrid{
+  display: grid;
+  grid-template-columns: repeat(3,1fr) 1.5fr 0.5fr repeat(3,1fr) 0.5fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(autofill,1fr);
+  gap: 0%;
+}
+
+.userListDiv{
+  background-color: #A8DADC ;
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  padding: 12px 0px;
+}
+
+.userListHead{
+  text-align: center;
+  text-decoration: none;
+  margin: 15%;
+  font-weight: 700;
+}
+
+.userListData{
+  text-align: center;
+}
+
+.userListDivData{
+  background-color: #F1FAEE ;
+  border: 1px solid black;
+
+}
+
 /* Section */
 
 #section1,
 #section2,
 #section3 {
   display: block;
-  background-color: white;
+  background-color:#F1FAEE ;
   margin: auto;
   border-radius: 3%;
   padding: 2% 0;
-  width: 50%;
-  margin-bottom: 5%;
+  width: 43%;
+  margin-bottom: 3%;
   border: 1px black solid;
 }
 #section2,
@@ -99,10 +118,10 @@ th {
 #section1:hover,
 #section2:hover,
 #section3:hover {
-  background-color: white;
+  background-color: #F1FAEE;
   animation-name: IncreaseWidthAndColorSection;
   animation-duration: 1s;
-  width: 52%;
+  
 }
 
 /* Sorting */
@@ -113,26 +132,27 @@ th {
 }
 
 #sortingOptions {
-  background: white;
+  background: #F1FAEE;
   color: black;
-  font-weight: 700;
+  font-weight: 900;
   border: 1px black solid;
   border-radius: 5px;
   display: flex;
-  width: 30%;
-  margin: 2% 35%;
+  width: 20%;
+  margin: 2% 40%;
+  display: block;
 }
 
-#sortingOptions:hover {
-  margin: 30px 20%;
-  padding: 10px 200px;
-  color: black;
+#sortingOptions:hover  ul{
+  list-style-type: none;
+  animation-name: IncreaseFilterButtonMargin;
+  animation-duration: 2s;
 }
 
 #sortingOptions:hover > .sortOption {
   display: flex;
-  list-style-type: none;
-  margin: 12px 20px;
+  width: 100%;
+  margin: 0% 22%;
 }
 
 .filterBy {
@@ -140,10 +160,14 @@ th {
 }
 
 #sortingOptions p {
-  background-color: white;
+  background-color: #F1FAEE;
   padding: 5%;
-  /* border: 1px black solid */
+  margin: 0% 10%;
+  /* border: 1px black solid; */
+  text-align: center;
 }
+
+
 
 /*  Buttons */
 
@@ -155,19 +179,9 @@ th {
   font-weight: 700;
   width: 20%;
 }
-#button1 {
-  position: relative;
-  left: 660px;
-  padding: 15px 135px;
-  background: #1abc9c;
-  color: #fff;
-  font-weight: 700;
-}
 
 #button:hover,
-button:active,
-#button1:hover,
-#button1:active {
+#button:active{
   animation-name: IncreaseWidthAndColorButton;
   animation-duration: 1s;
 }
@@ -175,7 +189,7 @@ button:active,
 #button-next {
   margin: 2% 40%;
   padding: 2% 5% 2% 5%;
-  background: #64b5f6;
+  background: #457B9D;
   color: #fff;
   font-weight: 700;
   width: 20%;
@@ -184,7 +198,7 @@ button:active,
 #button-next2,
 #button-previous2 {
   padding: 2% 5% 2% 5%;
-  background: #64b5f6;
+  background: #457B9D;
   color: #fff;
   font-weight: 700;
   width: 20%;
@@ -195,41 +209,40 @@ button:active,
   margin: 2px 10px;
 }
 
+.sortButton{
+  width: 100%;
+  background-color:#64b5f6 ;
+}
+
 /* Headings */
 
-.form .heading2 {
+.heading2 {
   border: 1px solid black;
   border-radius: 3px;
-  background: white;
+  background: #F1FAEE;
   text-align: center;
   padding: 15px;
   margin: 2% 10%;
 }
-.heading2 {
-  border: 1px solid black;
-  border-radius: 3px;
-  background: white;
-  text-align: center;
-  padding: 15px;
-  margin: 50px 200px;
-}
 
 .sectionHead {
   border: 1px black solid;
-  background-color: #64b5f6;
+  background-color: #457B9D;
+  color: white;
   width: 50%;
   margin: auto;
   padding: 2% 0%;
   border-radius: 3%;
+  text-align: center;
 }
 
 /* Animations */
 @keyframes IncreaseWidthAndColorSection {
   from {
-    width: 50%;
+    width: 40%;
   }
   to {
-    width: 52%;
+    width: 43%;
   }
 }
 
@@ -241,3 +254,13 @@ button:active,
     background-color: #2196f3;
   }
 }
+
+@keyframes IncreaseFilterButtonMargin {
+  from{
+    margin: 0% 0%;
+  }
+  to{
+    margin: 4% 0%;
+  }
+}
+
