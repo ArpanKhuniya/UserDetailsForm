@@ -52,14 +52,10 @@ function updateUserDetailsTable() {
 
     // Updating the table content.
     document.getElementById("userListGrid").innerHTML = userDetialsTableContent;
-
-    // Removing error messages
-    RemoveErrorMessageAge();
-    RemoveErrorMessageEmail();
-    RemoveErrorMessagePhoneNumber();
-
+    
     // Successful message.
     document.getElementById("submitSuccessful").style.display = "block";
+    
 
     // To reset form input fields.
     document.getElementById("userDetailsForm").reset();
@@ -133,6 +129,7 @@ function SortListOfUsers(fieldName) {
 
   document.getElementById("userListGrid").innerHTML = userDetialsTableContent;
   RemoveSuccessfulMessage();
+  LoadSection1();
 }
 
 // Validations
@@ -165,6 +162,7 @@ function ValidateInputForNameField(field) {
         "Name should contain only alphabets.";
       document.getElementById(`error${field}`).style.display = "block";
       document.getElementById(`error${field}`).style.color = "red";
+      LoadSection1();
       return false;
     }
   }
@@ -175,6 +173,7 @@ function ValidateInputForNameField(field) {
       ).innerHTML = `${field} should contain only alphabets.`;
       document.getElementById(`error${field}`).style.display = "block";
       document.getElementById(`error${field}`).style.color = "red";
+      LoadSection3();
       return false;
     }
   }
@@ -187,6 +186,7 @@ function ValidatePhoneNumber() {
   } else {
     document.getElementById("errorPhoneNumber").style.display = "block";
     document.getElementById("errorPhoneNumber").style.color = "red";
+    LoadSection1();
   }
 }
 
@@ -211,6 +211,7 @@ function ValidateEmail() {
   ) {
     document.getElementById("errorEmail").style.display = "block";
     document.getElementById("errorEmail").style.color = "red";
+    LoadSection1();
   } else {
     RemoveErrorMessageEmail();
     return true;
@@ -256,9 +257,6 @@ function RemoveErrorMessageOnTyping(fieldname) {
   document.getElementById(fieldname).style.display = "none";
 }
 
-function RemoveSuccessfulMessage() {
-  document.getElementById("submitSuccessful").style.display = "none";
-}
 
 function LoadSection1() {
   document.getElementById("section1").style.display = "block";
