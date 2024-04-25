@@ -7,7 +7,7 @@ body {
 }
 
 .div1 {
-  background: #6441A5;
+  background: #A2D2FF;
   background-attachment: fixed;
   border-radius: 5%;
   padding: 3%;
@@ -33,6 +33,10 @@ body {
   position: relative;
 }
 
+.formElement label{
+  font-weight: 700;
+}
+
 .formElement input,
 select {
   padding: 2%;
@@ -50,7 +54,7 @@ select {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 1px solid #ee0979;
+  border: 1px solid #237FD5;
   outline-width: 0;
   transition: All 0.5s ease-in;
   -webkit-transition: All 0.5s ease-in;
@@ -92,7 +96,7 @@ select {
 
 #successBtn {
   width: 30%;
-  background: #ee0979;
+  background: #237FD5;
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -113,10 +117,11 @@ select {
 }
 
 .userListDiv {
-  background-color: white;
+  background-color:#237FD5;
   border: 2px solid black;
   width: 100%;
   height: 100%;
+  padding: 10px 0px;
   
 }
 
@@ -126,7 +131,7 @@ select {
   margin: 15%;
   font-weight: 700;
   cursor: context-menu;
-  color: #2C3E50;
+  color: white;
 }
 
 .userListData {
@@ -134,7 +139,7 @@ select {
 }
 
 .userListDivData {
-  background-color: #C5C5F1;
+  background-color: white;
   border: 2px solid black;
   border-collapse:collapse ;
   width: 100%;
@@ -169,10 +174,14 @@ select {
 #section2:active,
 #section3:hover,
 #section3:active {
-  background-color: #F1FAEE;
   animation-name: IncreaseWidthAndColorSection;
   animation-duration: 1s;
 
+}
+
+.formElement:hover{
+  animation-name: IncreasePaddingOfFormElementSection;
+  animation-duration: 1s;
 }
 
 /* Sorting */
@@ -239,20 +248,36 @@ select {
 }
 
 #button-next {
-  width: 100px;
-  background: #ee0979;
+  width: 30%;
+  position: relative;
+  left:35%;
+  background: #237FD5;
   font-weight: bold;
   color: white;
   border: 0 none;
   border-radius: 25px;
   cursor: pointer;
   padding: 2% 3%;
-  margin: 5% 40%;
+  /* margin: 5% 40%; */
+  margin-top: 5%;
 }
 
 #button-next2 {
   width: 20%;
-  background: #ee0979;
+  background: #237FD5;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 2% 0%;
+  margin: 4% 0.2%;
+  text-align: center;
+}
+
+#submit {
+  width: 20%;
+  background: #237FD5;
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -299,9 +324,24 @@ select {
 .sectionHead {
   font-size: 18px;
   text-transform: uppercase;
+  background-color: white;
   color: #2C3E50;
   padding: 2% 0%;
   margin: 5% 10%;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: bold;
+  border: 1px black solid;
+}
+
+.sectionfilter{
+  font-size: 18px;
+  font-weight: 700;
+  background-color: white;
+  text-transform: uppercase;
+  color: #2C3E50;
+  padding: 2% 0%;
+  margin: 5% 20%;
   text-align: center;
   letter-spacing: 2px;
   font-weight: bold;
@@ -364,4 +404,14 @@ select {
   to {
     width: 25%;
   }
+}
+
+@keyframes IncreasePaddingOfFormElementSection {
+  from{
+    padding: 3% 4%;
+  }
+  to{
+    padding: 5% 5%;
+  }
+  
 }

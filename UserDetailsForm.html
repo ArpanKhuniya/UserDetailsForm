@@ -26,15 +26,15 @@
         <div class="formElement">
           <label for="firstName">First Name:</label>
           <input type="text" id="firstName" class="input" name="firstName"
-            onkeydown="RemoveErrorMessageOnTyping('errorfirstName'),RemoveSuccessfulMessage()"
-            onkeyup="ValidateInputForNameField('firstName')" />
+            onkeydown="RemoveErrorMessageOnTyping('errorfirstName')"
+            onkeyup="ValidateInputForField('firstName')" />
           <span id="errorfirstName">Please enter a value.</span>
         </div>
         <!-- Last Name -->
         <div class="formElement">
           <label for="lastName">Last Name:</label>
           <input type="text" id="lastName" name="lastName" onkeydown="RemoveErrorMessageOnTyping('errorlastName')"
-            onkeyup="ValidateInputForNameField('lastName')" />
+            onkeyup="ValidateInputForField('lastName')" />
           <span id="errorlastName">Please enter a value.</span>
         </div>
         <!-- Phone Number -->
@@ -116,26 +116,26 @@
         <div class="formElement">
           <label for="city">City:</label>
           <input type="text" id="city" name="city" onkeydown="RemoveErrorMessageOnTyping('errorcity')"
-            onkeyup="ValidateInputForNameField('city')" />
+            onkeyup="ValidateInputForField('city')" />
           <span id="errorcity" >Please enter a value.</span>
         </div>
         <!-- State -->
         <div class="formElement">
           <label for="state">State:</label>
           <input type="text" id="state" name="state" onkeydown="RemoveErrorMessageOnTyping('errorstate')"
-            onkeyup="ValidateInputForNameField('state')" />
+            onkeyup="ValidateInputForField('state')" />
           <span id="errorstate" >Please enter a value.</span>
         </div>
         <!-- Country -->
         <div class="formElement">
           <label for="country">Country:</label>
           <input type="text" id="country" name="country" onkeydown="RemoveErrorMessageOnTyping('errorcountry')"
-            onkeyup="ValidateInputForNameField('country')" />
+            onkeyup="ValidateInputForField('country') , CheckAllFieldAndReturnTrue()" />
           <span id="errorcountry" >Please enter a value.</span>
         </div>
         <div class="flexbox">
           <button type="button" id="button-previous2" onclick="LoadSection2()">Previous</button>
-          <button type="button" id="button-next2" onclick="updateUserDetailsTable(); LoadSection1()">Submit</button>
+          <button type="button" id="submit" onclick="updateUserDetailsTable(); LoadSection1()">Submit</button>
         </div>
       </div>
 
@@ -145,6 +145,7 @@
   <hr />
 
   <div class="div1">
+    <h3 class="sectionfilter">List of users</h3>
     <div id="userListGrid">
       <div class="userListDiv">
         <a class="userListHead" onclick="SortListOfUsers('firstName')">First Name</a>

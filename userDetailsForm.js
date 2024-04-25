@@ -1,23 +1,25 @@
 var data = [];
 var count = 0;
+var allFieldsAllNotNull = false;
+
+// Html form field names.
+let fieldNames = [
+  "firstName",
+  "lastName",
+  "phoneNumber",
+  "email",
+  "age",
+  "city",
+  "state",
+  "country",
+  "gender",
+  "disability",
+  "marital-status",
+  "address",
+];
 
 function updateUserDetailsTable() {
-  // Html form field names.
-  let fieldNames = [
-    "firstName",
-    "lastName",
-    "phoneNumber",
-    "email",
-    "age",
-    "city",
-    "state",
-    "country",
-    "gender",
-    "disability",
-    "marital-status",
-    "address",
-  ];
-
+  
   // Creating an object of all fields with their values.
   let fieldNamesWithValue = {};
   fieldNames.forEach((field) => {
@@ -60,6 +62,7 @@ function updateUserDetailsTable() {
     // To reset form input fields.
     document.getElementById("userDetailsForm").reset();
     RemoveAllSections();
+    
     return;
   } else {
     RemoveErrorMessageAge();
@@ -128,7 +131,6 @@ function SortListOfUsers(fieldName) {
   });
 
   document.getElementById("userListGrid").innerHTML = userDetialsTableContent;
-  RemoveSuccessfulMessage();
   LoadSection1();
 }
 
@@ -153,7 +155,7 @@ function ValidateNullInputs(fieldNamesWithValueObject) {
   return true;
 }
 
-function ValidateInputForNameField(field) {
+function ValidateInputForField(field) {
   let charRegex = /^[a-zA-Z]+$/;
   if (field === "firstName" || field === "lastName") {
     let nameVal = document.getElementById(field).value;
@@ -215,6 +217,18 @@ function ValidateEmail() {
   } else {
     RemoveErrorMessageEmail();
     return true;
+  }
+}
+
+function CheckAllFieldAndReturnTrue(){
+  let result = ValidateEmail() && ValidateAgeGreaterThanZero() && ValidatePhoneNumber();
+
+  for (let field in fieldNames){
+    result = result && ValidateInputForField(field);
+  }
+
+  if (result==true){
+    document.getElementById("submit").disabled=false;
   }
 }
 
