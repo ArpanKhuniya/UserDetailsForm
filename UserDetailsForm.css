@@ -2,14 +2,17 @@
   font-family: "Roboto", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: white;
 }
 
-.div1 {
+#div1 , #div2 {
   background: #A2D2FF;
   background-attachment: fixed;
-  border-radius: 5%;
   padding: 3%;
   height: 820px;
 }
@@ -33,7 +36,7 @@ body {
   position: relative;
 }
 
-.formElement label{
+.formElement label {
   font-weight: 700;
 }
 
@@ -95,15 +98,29 @@ select {
 }
 
 #successBtn {
-  width: 30%;
+  width: 35%;
   background: #237FD5;
-  font-weight: bold;
+  font-weight: 700;
   color: white;
   border: 0 none;
   border-radius: 25px;
   cursor: pointer;
-  padding: 2% 3%;
+  padding: 2% 5%;
   margin: 5% 4%;
+}
+
+#viewUserLink{
+  width: 30%;
+  background: #237FD5;
+  font-weight: 700;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 2% 4%;
+  margin: 5% 4%;
+  text-decoration: none;
+  text-transform: initial;
 }
 
 
@@ -111,18 +128,20 @@ select {
 
 #userListGrid {
   display: grid;
+  width: 100%;
+  overflow: scroll;
   grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 1fr) 0.5fr 1fr 1fr 1fr;
   grid-template-rows: repeat(autofill, 1fr);
   gap: 0%;
 }
 
 .userListDiv {
-  background-color:#237FD5;
+  background-color: #237FD5;
   border: 2px solid black;
   width: 100%;
   height: 100%;
   padding: 10px 0px;
-  
+
 }
 
 .userListHead {
@@ -141,7 +160,7 @@ select {
 .userListDivData {
   background-color: white;
   border: 2px solid black;
-  border-collapse:collapse ;
+  border-collapse: collapse;
   width: 100%;
   height: 100%;
 }
@@ -168,67 +187,10 @@ select {
   display: none;
 }
 
-#section1:hover,
-#section1:active,
-#section2:hover,
-#section2:active,
-#section3:hover,
-#section3:active {
-  animation-name: IncreaseWidthAndColorSection;
-  animation-duration: 1s;
-
-}
-
-.formElement:hover{
+.formElement:hover {
   animation-name: IncreasePaddingOfFormElementSection;
   animation-duration: 1s;
 }
-
-/* Sorting */
-
-.sortOption {
-  list-style-type: none;
-  display: none;
-
-}
-
-#sortingOptions {
-  background: #F1FAEE;
-  color: black;
-  font-weight: 900;
-  border: 1px black solid;
-  border-radius: 5px;
-  display: flex;
-  width: 20%;
-  margin: 2% 40%;
-  display: block;
-}
-
-#sortingOptions:hover ul {
-  list-style-type: none;
-  animation-name: IncreaseFilterButtonMargin;
-  animation-duration: 2s;
-}
-
-#sortingOptions:hover>.sortOption {
-  display: flex;
-  width: 100%;
-  margin: 0% 22%;
-}
-
-.filterBy {
-  border: 1px black solid;
-}
-
-#sortingOptions p {
-  background-color: #F1FAEE;
-  padding: 5%;
-  margin: 0% 10%;
-  /* border: 1px black solid; */
-  text-align: center;
-}
-
-
 
 /*  Buttons */
 
@@ -250,7 +212,7 @@ select {
 #button-next {
   width: 30%;
   position: relative;
-  left:35%;
+  left: 35%;
   background: #237FD5;
   font-weight: bold;
   color: white;
@@ -300,16 +262,6 @@ select {
   margin: 4% 0.2%;
 }
 
-.sortButton {
-  background-color: #109177;
-  margin: 2px 10px;
-}
-
-.sortButton {
-  width: 100%;
-  background-color: #64b5f6;
-}
-
 /* Headings */
 
 .heading2 {
@@ -334,7 +286,7 @@ select {
   border: 1px black solid;
 }
 
-.sectionfilter{
+#sectionfilter {
   font-size: 18px;
   font-weight: 700;
   background-color: white;
@@ -407,11 +359,122 @@ select {
 }
 
 @keyframes IncreasePaddingOfFormElementSection {
-  from{
+  from {
     padding: 3% 4%;
   }
-  to{
+
+  to {
     padding: 5% 5%;
   }
+
+}
+
+/* Media queries */
+
+@media (max-width:450px) {
+
+  body{
+    background: #A2D2FF;
+  }
+  .div1 {    
+    padding: 3%;
+    width: 80vw;
+  }
+
+  #section1,
+  #section2,
+  #section3 {
+    margin: 20% 6%;
+    width: 100%;
+    padding: 0% 0%;
+  }
+
+  #section2,
+  #section3 {
+    display: none;
+  }
+
+  .sectionHead {
+    padding: 5% 0%;
+    margin: 15% 10%;
+  }
+
+  .formElement {
+    padding: 3% 4%;
+    width: 80%;
+    margin: 7% 10%;
+  }
   
+  .formElement input,
+  select {
+    padding: 5%;
+    margin: 1% 0%;
+    width: 100%;
+  }
+
+  #button-next {
+    width: 30%;
+    position: relative;
+    left: 35%;
+    padding: 5% 7%;
+    margin: 10% 0%;
+  }
+  
+  #button-next2 {
+    width: 30%;
+    padding: 5% 5%;
+    margin: 4% 1%;
+  }
+    
+  #button-previous2 {
+    width: 30%;
+    padding: 2% 0%;
+    margin: 4% 0.2%;
+  }
+  
+  .flexbox {
+    margin: 12% 20%;
+  }
+  
+  #submit {
+    width: 30%;
+    padding: 5% 0%;
+    margin: 4% 0.2%;
+  }
+
+  #submitSuccessful {
+    width: 100%;
+    margin: 80% 6%;
+    padding: 10% 2%;
+    border-radius: 3%;
+    animation: none;
+    box-shadow: 0px 0px;
+  }
+  
+  #successBtn {
+    width: 50%;
+    padding: 5% 3%;
+    margin: 5% 4%;
+    font-weight: 700;
+  }
+
+  #viewUserLink{
+    width: 30%;
+    padding: 4% 6%;
+    margin: 5% 4%;
+  }
+
+  #userListGrid {
+    display: grid;
+    width: 100%;
+    margin-left: 5%;
+  }
+  
+
+  #sectionfilter {
+    padding: 2% 0%;
+    margin: 5% 20%;
+    width: 70%;
+  }
+
 }

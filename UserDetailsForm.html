@@ -9,19 +9,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js" 
+   type = "text/javascript"></script>
   <title>User Details Form</title>
 </head>
 
 <body>
+
   <!-- User Details Form -->
-  <div class="div1">
+  <div id="div1">
+    <script src="./userDetailsFormUsingKnockout.js"></script>
     <form id="userDetailsForm">
       <div id="submitSuccessful">
         <h3>Your details have been recorded.</h3>
-        <button type="button" onclick="LoadSection1(),RemoveOkButton()" id="successBtn">Ok</button>
+        <button type="button" onclick="LoadSection1(),RemoveOkButton()" id="successBtn">Ok</button><br>
+        <a href="#div2" id="viewUserLink">View users list</a>
       </div>
+
+      <!-- Section 1 -->
       <div id="section1">
-        <h3 class="sectionHead">Personal Details</h3>
+        <h3 class="sectionHead" data-bind="text : sectionHeader()"></h3>
         <!-- First Name -->
         <div class="formElement">
           <label for="firstName">First Name:</label>
@@ -144,7 +151,7 @@
 
   <hr />
 
-  <div class="div1">
+  <div id="div2">
     <h3 class="sectionfilter">List of users</h3>
     <div id="userListGrid">
       <div class="userListDiv">
@@ -185,6 +192,7 @@
       </div>
     </div>
   </div>
+  
 </body>
 
 </html>
