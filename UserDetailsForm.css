@@ -286,7 +286,7 @@ select {
   border: 1px black solid;
 }
 
-#sectionfilter {
+.sectionfilter {
   font-size: 18px;
   font-weight: 700;
   background-color: white;
@@ -384,7 +384,7 @@ select {
   #section1,
   #section2,
   #section3 {
-    margin: 20% 6%;
+    margin: 5% 0%;
     width: 100%;
     padding: 0% 0%;
   }
@@ -467,7 +467,6 @@ select {
   #userListGrid {
     display: grid;
     width: 100%;
-    margin-left: 5%;
   }
   
 
