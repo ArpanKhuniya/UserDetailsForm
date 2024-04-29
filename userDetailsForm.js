@@ -19,7 +19,6 @@ let fieldNames = [
 ];
 
 function updateUserDetailsTable() {
-  
   // Creating an object of all fields with their values.
   let fieldNamesWithValue = {};
   fieldNames.forEach((field) => {
@@ -54,15 +53,14 @@ function updateUserDetailsTable() {
 
     // Updating the table content.
     document.getElementById("userListGrid").innerHTML = userDetialsTableContent;
-    
+
     // Successful message.
     document.getElementById("submitSuccessful").style.display = "block";
-    
 
     // To reset form input fields.
     document.getElementById("userDetailsForm").reset();
     RemoveAllSections();
-    
+
     return;
   } else {
     RemoveErrorMessageAge();
@@ -220,15 +218,16 @@ function ValidateEmail() {
   }
 }
 
-function CheckAllFieldAndReturnTrue(){
-  let result = ValidateEmail() && ValidateAgeGreaterThanZero() && ValidatePhoneNumber();
+function CheckAllFieldAndReturnTrue() {
+  let result =
+    ValidateEmail() && ValidateAgeGreaterThanZero() && ValidatePhoneNumber();
 
-  for (let field in fieldNames){
+  for (let field in fieldNames) {
     result = result && ValidateInputForField(field);
   }
 
-  if (result==true){
-    document.getElementById("submit").disabled=false;
+  if (result == true) {
+    document.getElementById("submit").disabled = false;
   }
 }
 
@@ -271,7 +270,6 @@ function RemoveErrorMessageOnTyping(fieldname) {
   document.getElementById(fieldname).style.display = "none";
 }
 
-
 function LoadSection1() {
   document.getElementById("section1").style.display = "block";
   document.getElementById("section2").style.display = "none";
@@ -290,13 +288,13 @@ function LoadSection3() {
   document.getElementById("section3").style.display = "block";
 }
 
-function RemoveAllSections(){
+function RemoveAllSections() {
   document.getElementById("section1").style.display = "none";
   document.getElementById("section2").style.display = "none";
   document.getElementById("section3").style.display = "none";
   document.getElementById("section4").style.display = "block";
 }
 
-function RemoveOkButton(){
-  document.getElementById("submitSuccessful").style.display='none';
+function RemoveOkButton() {
+  document.getElementById("submitSuccessful").style.display = "none";
 }
