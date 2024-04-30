@@ -82,7 +82,7 @@ select {
   font-size: 18px;
   text-transform: uppercase;
   color: #2c3e50;
-  display: none;
+  display: block;
   color: black;
   background-color: white;
   margin-bottom: 20px;
@@ -152,24 +152,31 @@ select {
   color: white;
 }
 
-.userListData {
-  text-align: center;
-}
 
-.userListDivData {
+.userListData{
   background-color: white;
   border: 2px solid black;
   border-collapse: collapse;
   width: 100%;
   height: 100%;
+  text-align: center;
 }
 
+#userListGridData{
+  display: grid;
+  width: 100%;
+  overflow: scroll;
+  grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 1fr) 0.5fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(autofill, 1fr);
+  background-color: white;
+  
+}
 /* Section */
 
 #section1,
 #section2,
 #section3 {
-  display: block;
+  /* display: block; */
   background-color: white;
   margin: auto;
   border-radius: 3%;
@@ -181,10 +188,7 @@ select {
   box-sizing: border-box;
 }
 
-#section2,
-#section3 {
-  display: none;
-}
+
 
 .formElement:hover {
   animation-name: IncreasePaddingOfFormElementSection;
@@ -313,7 +317,14 @@ select {
 #errorPhoneNumber,
 #errorEmail,
 #errorAge {
-  display: none;
+  display: block;
+  color: red;
+}
+
+#AllFieldsErrorMessage{
+  color: red;
+  text-align: center;
+  font-weight: 700;
 }
 
 /* Animations */
@@ -386,10 +397,10 @@ select {
     padding: 0% 0%;
   }
 
-  #section2,
+  /* #section2,
   #section3 {
     display: none;
-  }
+  } */
 
   .sectionHead {
     padding: 5% 0%;

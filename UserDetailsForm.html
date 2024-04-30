@@ -20,14 +20,14 @@
 
   <body>
     <!-- User Details Form -->
-    <div id="div1">
+    <div id="div1" >
       <form id="userDetailsForm">
-        <div id="submitSuccessful" data-bind="visible : successfulMessage()">
+        <div id="submitSuccessful" data-bind="visible : successfulMessage">
           <h3>Your details have been recorded.</h3>
           <button
             type="button"
-            data-bind="click:RemoveOkButton;LoadSection1,"
             id="successBtn"
+            data-bind="click:HideSuccessfulMessage"
           >
             Ok</button
           ><br />
@@ -35,7 +35,7 @@
         </div>
 
         <!-- Section 1 -->
-        <div id="section1">
+        <div id="section1" data-bind="visible: section1">
           <h3
             class="sectionHead"
             data-bind="text : sectionHeaderForPersonalDetails()"
@@ -48,11 +48,9 @@
               id="firstName"
               class="input"
               name="firstName"
-              data-bind="value:firstName"
-              onkeydown="RemoveErrorMessageOnTyping('errorfirstName')"
-              onkeyup="ValidateInputForField('firstName')"
+              data-bind="value:firstName ,valueUpdate:'afterkeydown' "
             />
-            <span id="errorfirstName">Please enter a value.</span>
+            <span id="errorfirstName" data-bind="visible : ValidateFirstName()">First Name should have only alphabets.</span>
           </div>
           <!-- Last Name -->
           <div class="formElement">
@@ -61,11 +59,9 @@
               type="text"
               id="lastName"
               name="lastName"
-              data-bind="value:lastName"
-              onkeydown="RemoveErrorMessageOnTyping('errorlastName')"
-              onkeyup="ValidateInputForField('lastName')"
+              data-bind="value:lastName, valueUpdate:'afterkeydown'"
             />
-            <span id="errorlastName">Please enter a value.</span>
+            <span id="errorlastName" data-bind="visible:ValidateLastName()">Last Name should have only alphabets.</span>
           </div>
           <!-- Phone Number -->
           <div class="formElement">
@@ -74,14 +70,11 @@
               type="number"
               id="phoneNumber"
               name="phoneNumber"
-              data-bind="value:phoneNumber"
-              onkeydown="RemoveErrorMessageOnTyping('errorphoneNumber')"
-              onkeyup="ValidatePhoneNumber()"
+              data-bind="value:phoneNumber ,valueUpdate:'afterkeydown'"
             />
-            <span id="errorPhoneNumber"
+            <span id="errorPhoneNumber" data-bind="visible:ValidatePhoneNumber()"
               >Please enter 10 digit phone number.</span
             >
-            <span id="errorphoneNumber">Please enter a value.</span>
           </div>
           <!-- Email -->
           <div class="formElement">
@@ -90,20 +83,18 @@
               type="email"
               id="email"
               name="email"
-              data-bind="value:email"
-              onkeydown="RemoveErrorMessageOnTyping('erroremail')"
-              onkeyup="ValidateEmail()"
+              data-bind="value:email,valueUpdate:'afterkeydown'"
             />
-            <span id="errorEmail">Email should have @ and .</span>
-            <span id="erroremail">Please enter a value.</span>
+            <span id="errorEmail" data-bind="visible:ValidateEmail()">Email should have @ and .</span>
+
           </div>
-          <button type="button" id="button-next" data-bind="click:LoadSection2">
+          <button type="button" id="button-next" data-bind="click:LoadSection2" >
             Next
           </button>
         </div>
 
         <!-- Section 2 -->
-        <div id="section2">
+        <div id="section2" data-bind="visible:section2">
           <h3
             class="sectionHead"
             data-bind="text : sectionHeaderForPersonalDetails()"
@@ -115,14 +106,12 @@
               type="number"
               id="age"
               name="age"
-              data-bind="value:age"
-              onkeydown="RemoveErrorMessageOnTyping('errorage')"
-              onkeyup="ValidateAgeGreaterThanZero()"
+              data-bind="value:age, valueUpdate:'afterkeydown'"
             />
-            <span id="errorAge"
+            <span id="errorAge" data-bind="visible:ValidateAge()"
               >Age should be greater than 0 and less than 150</span
             >
-            <span id="errorage">Please enter a value.</span>
+
           </div>
           <!-- Disability -->
           <div class="formElement">
@@ -154,6 +143,7 @@
                   value="Male"
                   id="gender"
                   data-bind="checked:gender "
+                  checked
                 />
               </div>
               <div class="gender">
@@ -191,7 +181,7 @@
         </div>
 
         <!-- Section 3 -->
-        <div id="section3">
+        <div id="section3" data-bind="visible:section3">
           <h3
             class="sectionHead"
             data-bind="text : sectionHeaderForAddressDetails()"
@@ -203,10 +193,9 @@
               type="text"
               id="address"
               name="address"
-              data-bind="value:address"
-              onkeydown="RemoveErrorMessageOnTyping('erroraddress')"
+              data-bind="value:address ,valueUpdate:'afterkeydown'"
             />
-            <span id="erroraddress">Please enter a value.</span>
+            <span id="erroraddress" data-bind="visible:ValidateAddress()">Please enter a value.</span>
           </div>
           <!-- City -->
           <div class="formElement">
@@ -215,11 +204,9 @@
               type="text"
               id="city"
               name="city"
-              data-bind="value:city"
-              onkeydown="RemoveErrorMessageOnTyping('errorcity')"
-              onkeyup="ValidateInputForField('city')"
+              data-bind="value:city,valueUpdate:'afterkeydown'"
             />
-            <span id="errorcity">Please enter a value.</span>
+            <span id="errorcity" data-bind="visible:ValidateCity()">City name should have only alphabets.</span>
           </div>
           <!-- State -->
           <div class="formElement">
@@ -228,11 +215,10 @@
               type="text"
               id="state"
               name="state"
-              data-bind="value:state"
-              onkeydown="RemoveErrorMessageOnTyping('errorstate')"
-              onkeyup="ValidateInputForField('state')"
+              data-bind="value:state,valueUpdate:'afterkeydown'"
             />
-            <span id="errorstate">Please enter a value.</span>
+            <!-- <span id="errorstate">Please enter a value.</span> -->
+            <span id="errorcity" data-bind="visible:ValidateState()">State name should have only alphabets.</span>
           </div>
           <!-- Country -->
           <div class="formElement">
@@ -241,11 +227,10 @@
               type="text"
               id="country"
               name="country"
-              data-bind="value:country"
-              onkeydown="RemoveErrorMessageOnTyping('errorcountry')"
-              onkeyup="ValidateInputForField('country') , CheckAllFieldAndReturnTrue()"
+              data-bind="value:country ,valueUpdate:'afterkeydown'"
             />
-            <span id="errorcountry">Please enter a value.</span>
+            <span id="errorcity" data-bind="visible:ValidateCountry()">Country name should have only alphabets.</span>
+            <!-- <span id="errorcountry">Please enter a value.</span> -->
           </div>
           <div class="flexbox">
             <button
@@ -256,16 +241,20 @@
               Previous
             </button>
             <button
-              type="button"
+              type="submit"
               id="submit"
-              onclick="updateUserDetailsTable(); LoadSection1()"
+              data-bind="visible:ValidateNullFields,click : OnSubmit"
             >
               Submit
             </button>
+            <br>
+            
           </div>
+          <p id="AllFieldsErrorMessage" data-bind="visible:!ValidateNullFields()">Please fill all fields.</p>
         </div>
       </form>
     </div>
+
 
     <hr />
 
@@ -323,9 +312,20 @@
           >
         </div>
       </div>
-      <!-- <div id ="userListGridData" data-bind="foreach:data">
-      <h5 data-bind="text: $data"></h5>
-    </div> -->
+      <div id ="userListGridData" data-bind="foreach:UserDB">
+        <h5 class="userListData" data-bind="text: firstName"></h5>
+        <h5 class="userListData" data-bind="text: lastName"></h5>
+        <h5 class="userListData" data-bind="text: phoneNumber"></h5>
+        <h5 class="userListData" data-bind="text: email"></h5>
+        <h5 class="userListData" data-bind="text: age"></h5>
+        <h5 class="userListData" data-bind="text: disability"></h5>
+        <h5 class="userListData" data-bind="text: maritalStatus"></h5>
+        <h5 class="userListData" data-bind="text: gender"></h5>
+        <h5 class="userListData" data-bind="text: address"></h5>
+        <h5 class="userListData" data-bind="text: city"></h5>
+        <h5 class="userListData" data-bind="text: state"></h5>
+        <h5 class="userListData" data-bind="text: country"></h5>
+    </div>
     </div>
     <script src="./userDetailsFormUsingKnockout.js"></script>
   </body>
