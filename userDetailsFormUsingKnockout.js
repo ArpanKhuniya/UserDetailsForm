@@ -2,7 +2,6 @@ function viewModel() {
   var self = this;
   var numberRegex = /^\d+$/;
   var charRegex = /^[a-zA-Z]+$/;
-  var data = [];
   self.sectionHeaderForPersonalDetails = ko.observable("Personal Details");
   self.sectionHeaderForAddressDetails = ko.observable("Address Details");
 
@@ -17,7 +16,7 @@ function viewModel() {
   self.HideSuccessfulMessage = function () {
     self.successfulMessage(false);
     self.LoadSection1();
-    self.userRecord("");
+    // self.userRecord("");
   }
 
   self.HideAllSections = ko.observable(false);
@@ -72,14 +71,14 @@ function viewModel() {
     document.getElementById("section3").style.display = "none";
   };
 
-  // Validations.
-  
+  // Validations of fields.
+
   self.ValidateFirstName = ko.computed(function () {
-    return !charRegex.test(self.firstName());
+    if (self.firstName()) { return !charRegex.test(self.firstName()); }
   })
 
   self.ValidateLastName = ko.computed(function () {
-    return !charRegex.test(self.lastName());
+    if (self.lastName()) { return !charRegex.test(self.lastName()); }
   })
 
   self.ValidatePhoneNumber = ko.computed(function () {
@@ -90,7 +89,7 @@ function viewModel() {
 
   self.ValidateEmail = ko.computed(function () {
     if (self.email()) {
-      return !self.email().includes('@') && !self.email().includes('.');
+      return !self.email().includes('@') || !self.email().includes('.');
     }
   })
 
@@ -100,51 +99,82 @@ function viewModel() {
     }
   })
 
-  self.ValidateAddress = ko.computed(function () {
-    if (self.address()) {
-      return (self.address().length == 0);
-    }
-  })
-
   self.ValidateCity = ko.computed(function () {
-    return !charRegex.test(self.city());
+    if (self.city()) { return !charRegex.test(self.city()); }
   })
 
   self.ValidateState = ko.computed(function () {
-    return !charRegex.test(self.state());
+    if (self.state()) { return !charRegex.test(self.state()); }
   })
 
   self.ValidateCountry = ko.computed(function () {
-    return !charRegex.test(self.country());
+    if (self.country()) { return !charRegex.test(self.country()); }
   })
 
   self.ValidateNullFields = ko.computed(function () {
     return self.firstName() && self.lastName() && self.phoneNumber() && self.email() && self.age() && self.state() && self.address() && self.city() && self.country();
   })
 
+  // Enable next buttons.
+  self.EnableNextButtonOfSection1 = ko.computed(function () {
+    return self.firstName() && self.lastName() && self.phoneNumber() && self.email();
+  })
+
+  self.EnableNextButtonOfSection2 = ko.computed(function () {
+    return self.age();
+  })
+
   // After submitting the form 
-  self.UserDB=ko.observableArray();
-  self.userRecord = ko.observable();
+  self.userDB = ko.observableArray([]);
   self.OnSubmit = function () {
-    self.userRecord({
+    self.userDB.push({
       firstName: self.firstName(),
-      lastName: self.lastName(), 
-      phoneNumber: self.phoneNumber(), 
-      email: self.email(), 
+      lastName: self.lastName(),
+      phoneNumber: self.phoneNumber(),
+      email: self.email(),
       age: self.age(),
-      disability:self.disability(), 
-      maritalStatus:self.maritalStatus(),
-      gender:self.gender(),
+      disability: self.disability(),
+      maritalStatus: self.maritalStatus(),
+      gender: self.gender(),
       address: self.address(),
-      city:self.city(),
+      city: self.city(),
       state: self.state(),
       country: self.country()
     });
-    self.UserDB.push(self.userRecord());
-    // data.push(self.userRecord);
     document.getElementById("userDetailsForm").reset();
     self.DisplaySuccessfulMessage();
   }
+
+  // Sorting
+
+  self.sortInAscendingOrder = ko.observable(true);
+  self.sortTable = function (fieldName) {
+    if (self.sortInAscendingOrder) {
+      self.userDB.sort(function (a, b) {
+        if (a[fieldName].toLowerCase() < b[fieldName].toLowerCase()) {
+          return -1;
+        }
+        if (a[fieldName].toLowerCase() > b[fieldName].toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      })
+      self.sortInAscendingOrder(false);
+    }else{
+      self.userDB.sort(function (a, b) {
+        if (a[fieldName] < b[fieldName]) {
+          return -1;
+        }
+        if (a[fieldName] > b[fieldName]) {
+          return 1;
+        }
+        return 0;
+      })
+      self.userDB.reverse();
+    };
+  }
+
+
 }
 ko.applyBindings(new viewModel());
 
