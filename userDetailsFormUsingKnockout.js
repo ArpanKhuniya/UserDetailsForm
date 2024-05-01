@@ -11,13 +11,13 @@ function viewModel() {
   self.DisplaySuccessfulMessage = function () {
     self.successfulMessage(true);
     self.RemoveAllSections();
-  }
+  };
 
   self.HideSuccessfulMessage = function () {
     self.successfulMessage(false);
     self.LoadSection1();
     // self.userRecord("");
-  }
+  };
 
   self.HideAllSections = ko.observable(false);
 
@@ -42,7 +42,6 @@ function viewModel() {
     "Do not mention",
   ]);
 
-
   self.section1 = ko.observable(true);
   self.section2 = ko.observable(false);
   self.section3 = ko.observable(false);
@@ -51,19 +50,19 @@ function viewModel() {
     self.section1(false);
     self.section2(true);
     self.section3(false);
-  }
+  };
 
   self.LoadSection3 = function () {
     self.section1(false);
     self.section2(false);
     self.section3(true);
-  }
+  };
 
   self.LoadSection1 = function () {
     self.section1(true);
     self.section2(false);
     self.section3(false);
-  }
+  };
 
   self.RemoveAllSections = function () {
     document.getElementById("section1").style.display = "none";
@@ -74,57 +73,81 @@ function viewModel() {
   // Validations of fields.
 
   self.ValidateFirstName = ko.computed(function () {
-    if (self.firstName()) { return !charRegex.test(self.firstName()); }
-  })
+    if (self.firstName()) {
+      return !charRegex.test(self.firstName());
+    }
+  });
 
   self.ValidateLastName = ko.computed(function () {
-    if (self.lastName()) { return !charRegex.test(self.lastName()); }
-  })
+    if (self.lastName()) {
+      return !charRegex.test(self.lastName());
+    }
+  });
 
   self.ValidatePhoneNumber = ko.computed(function () {
     if (self.phoneNumber()) {
-      return !numberRegex.test(self.phoneNumber()) || self.phoneNumber().length != 10;
+      return (
+        !numberRegex.test(self.phoneNumber()) || self.phoneNumber().length != 10
+      );
     }
-  })
+  });
 
   self.ValidateEmail = ko.computed(function () {
     if (self.email()) {
-      return !self.email().includes('@') || !self.email().includes('.');
+      return !self.email().includes("@") || !self.email().includes(".");
     }
-  })
+  });
 
   self.ValidateAge = ko.computed(function () {
     if (self.age()) {
       return self.age() < 0 || self.age() > 150;
     }
-  })
+  });
 
   self.ValidateCity = ko.computed(function () {
-    if (self.city()) { return !charRegex.test(self.city()); }
-  })
+    if (self.city()) {
+      return !charRegex.test(self.city());
+    }
+  });
 
   self.ValidateState = ko.computed(function () {
-    if (self.state()) { return !charRegex.test(self.state()); }
-  })
+    if (self.state()) {
+      return !charRegex.test(self.state());
+    }
+  });
 
   self.ValidateCountry = ko.computed(function () {
-    if (self.country()) { return !charRegex.test(self.country()); }
-  })
+    if (self.country()) {
+      return !charRegex.test(self.country());
+    }
+  });
 
   self.ValidateNullFields = ko.computed(function () {
-    return self.firstName() && self.lastName() && self.phoneNumber() && self.email() && self.age() && self.state() && self.address() && self.city() && self.country();
-  })
+    return (
+      self.firstName() &&
+      self.lastName() &&
+      self.phoneNumber() &&
+      self.email() &&
+      self.age() &&
+      self.state() &&
+      self.address() &&
+      self.city() &&
+      self.country()
+    );
+  });
 
   // Enable next buttons.
   self.EnableNextButtonOfSection1 = ko.computed(function () {
-    return self.firstName() && self.lastName() && self.phoneNumber() && self.email();
-  })
+    return (
+      self.firstName() && self.lastName() && self.phoneNumber() && self.email()
+    );
+  });
 
   self.EnableNextButtonOfSection2 = ko.computed(function () {
     return self.age();
-  })
+  });
 
-  // After submitting the form 
+  // After submitting the form
   self.userDB = ko.observableArray([]);
   self.OnSubmit = function () {
     self.userDB.push({
@@ -139,12 +162,77 @@ function viewModel() {
       address: self.address(),
       city: self.city(),
       state: self.state(),
-      country: self.country()
+      country: self.country(),
     });
     document.getElementById("userDetailsForm").reset();
     self.DisplaySuccessfulMessage();
-  }
+  };
 
+  // Remove user
+
+  self.RemoveUser = function (user) {
+    self.userDB.remove(user);
+  };
+
+  // Update user Details
+  self.whenSubmit = ko.observable(true);
+  self.whenUpdate = ko.observable(false);
+  self.PopulateFormEithValues = function (user) {
+    document.getElementById("firstName").value = user.firstName;
+    document.getElementById("lastName").value = user.lastName;
+    document.getElementById("phoneNumber").value = user.phoneNumber;
+    document.getElementById("email").value = user.email;
+    document.getElementById("age").value = user.age;
+    document.getElementById("disability").value = user.disability;
+    document.getElementById("marital-status").value = user.maritalStatus;
+    document.getElementById("gender").value = user.gender;
+    document.getElementById("address").value = user.address;
+    document.getElementById("city").value = user.city;
+    document.getElementById("state").value = user.state;
+    document.getElementById("country").value = user.country;
+  };
+
+  self.UpdateUserDetails = function (user) {
+    self.PopulateFormEithValues(user);
+    self.whenUpdate(true);
+    self.whenSubmit(false);
+    self.RemoveUser(user);
+  };
+
+  self.UpdateUserDetailsFormButton = function (user) {
+    self.userDB.push({
+      firstName: self.firstName(),
+      lastName: self.lastName(),
+      phoneNumber: self.phoneNumber(),
+      email: self.email(),
+      age: self.age(),
+      disability: self.disability(),
+      maritalStatus: self.maritalStatus(),
+      gender: self.gender(),
+      address: self.address(),
+      city: self.city(),
+      state: self.state(),
+      country: self.country(),
+    });
+    // self.userDB[user] = {
+    //   firstName: document.getElementById("firstName").value,
+    //   lastName: document.getElementById("lastName").value,
+    //   phoneNumber: document.getElementById("phoneNumber").value,
+    //   email: document.getElementById("email").value,
+    //   age: document.getElementById("age").value,
+    //   disability: document.getElementById("disability").value,
+    //   maritalStatus: document.getElementById("marital-status").value,
+    //   gender: document.getElementById("gender").value,
+    //   address: document.getElementById("address").value,
+    //   city: document.getElementById("city").value,
+    //   state: document.getElementById("state").value,
+    //   country: document.getElementById("country").value,
+    // };
+    document.getElementById("userDetailsForm").reset();
+    self.DisplaySuccessfulMessage();
+    self.whenUpdate(false);
+    self.whenSubmit(true);
+  };
   // Sorting
 
   self.sortInAscendingOrder = ko.observable(true);
@@ -158,9 +246,9 @@ function viewModel() {
           return 1;
         }
         return 0;
-      })
+      });
       self.sortInAscendingOrder(false);
-    }else{
+    } else {
       self.userDB.sort(function (a, b) {
         if (a[fieldName] < b[fieldName]) {
           return -1;
@@ -169,12 +257,9 @@ function viewModel() {
           return 1;
         }
         return 0;
-      })
+      });
       self.userDB.reverse();
-    };
-  }
-
-
+    }
+  };
 }
 ko.applyBindings(new viewModel());
-

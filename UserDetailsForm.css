@@ -130,7 +130,7 @@ select {
   display: grid;
   width: 100%;
   overflow: scroll;
-  grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 1fr) 0.5fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 0.75fr) 1.5fr 1fr 1fr 1fr;
   grid-template-rows: repeat(autofill, 1fr);
   gap: 0%;
 }
@@ -152,8 +152,7 @@ select {
   color: white;
 }
 
-
-.userListData{
+.userListData {
   background-color: white;
   border: 2px solid black;
   border-collapse: collapse;
@@ -162,14 +161,13 @@ select {
   text-align: center;
 }
 
-#userListGridData{
+#userListGridData {
   display: grid;
   width: 100%;
   overflow: scroll;
-  grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 1fr) 0.5fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 0.75fr) 1.5fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(autofill, 1fr);
   background-color: white;
-  
 }
 /* Section */
 
@@ -187,8 +185,6 @@ select {
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
 }
-
-
 
 .formElement:hover {
   animation-name: IncreasePaddingOfFormElementSection;
@@ -321,7 +317,7 @@ select {
   color: red;
 }
 
-#AllFieldsErrorMessage{
+#AllFieldsErrorMessage {
   color: red;
   text-align: center;
   font-weight: 700;
