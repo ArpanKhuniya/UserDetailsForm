@@ -179,15 +179,10 @@ select {
   font-weight: 700;
   text-decoration: none;
   border: 1px solid black;
-  margin: 5px;
+  padding: 8%;
+  margin: 4%;
 }
 
-.crudButtonUpdate{
-  padding: 0px 20px;
-}
-.crudButtonRemove{
-  padding: 2px 22px;
-}
 /* Section */
 
 #section1,
@@ -340,6 +335,13 @@ select {
   color: red;
   text-align: center;
   font-weight: 700;
+}
+
+/* Images */
+
+#deleteBinImage{
+  height:5px;
+  width: 5px;
 }
 
 /* Animations */
