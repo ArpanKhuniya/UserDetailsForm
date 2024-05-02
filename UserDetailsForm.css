@@ -129,8 +129,7 @@ select {
 #userListGrid {
   display: grid;
   width: 100%;
-  overflow: scroll;
-  grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 0.75fr) 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 7vw) 10vw 3vw repeat(3, 5vw) 10vw repeat(3,7vw) 12vw;
   grid-template-rows: repeat(autofill, 1fr);
   gap: 0%;
 }
@@ -140,7 +139,6 @@ select {
   border: 2px solid black;
   width: 100%;
   height: 100%;
-  padding: 10px 0px;
 }
 
 .userListHead {
@@ -150,6 +148,8 @@ select {
   font-weight: 700;
   cursor: context-menu;
   color: white;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .userListData {
@@ -159,15 +159,34 @@ select {
   width: 100%;
   height: 100%;
   text-align: center;
+  overflow: scroll;
+  scrollbar-width: none;
+  margin: 0;
 }
 
 #userListGridData {
   display: grid;
   width: 100%;
-  overflow: scroll;
-  grid-template-columns: repeat(3, 1fr) 1.5fr 0.5fr repeat(3, 0.75fr) 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 7vw) 10vw 3vw repeat(3, 5vw) 10vw repeat(3,7vw) 12vw;
   grid-template-rows: repeat(autofill, 1fr);
   background-color: white;
+  margin: 0;
+}
+
+.crudButtonRemove,.crudButtonUpdate{
+  background-color: #237fd5;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.crudButtonUpdate{
+  padding: 0px 20px;
+}
+.crudButtonRemove{
+  padding: 2px 22px;
 }
 /* Section */
 
@@ -447,8 +466,8 @@ select {
   }
 
   #submitSuccessful {
-    width: 100%;
-    margin: 80% 6%;
+    width: 80%;
+    margin: 80% 8%;
     padding: 10% 2%;
     border-radius: 3%;
     animation: none;
@@ -469,8 +488,15 @@ select {
   }
 
   #userListGrid {
+    grid-template-columns: repeat(3, 1fr) 1.5fr .05fr repeat(3, 0.75fr) 1.5fr repeat(3,1fr) 2fr;
     display: grid;
     width: 100%;
+    overflow: scroll;
+  }
+  
+  #userListGridData{
+    grid-template-columns: repeat(3, 1fr) 1.5fr .05fr repeat(3, 0.75fr) 1.5fr repeat(3,1fr) 2fr;
+    overflow: scroll;
   }
 
   #sectionfilter {

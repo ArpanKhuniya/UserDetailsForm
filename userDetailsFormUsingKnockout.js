@@ -175,6 +175,11 @@ function viewModel() {
   };
 
   // Update user Details
+  self.index=ko.observable(-1);
+  self.getIndex=function(user){
+    
+  }
+
   self.whenSubmit = ko.observable(true);
   self.whenUpdate = ko.observable(false);
   self.PopulateFormEithValues = function (user) {
@@ -196,6 +201,7 @@ function viewModel() {
     self.PopulateFormEithValues(user);
     self.whenUpdate(true);
     self.whenSubmit(false);
+    self.index(self.userDB.indexOf(user));
     self.RemoveUser(user);
   };
 
@@ -214,30 +220,20 @@ function viewModel() {
       state: self.state(),
       country: self.country(),
     });
-    // self.userDB[user] = {
-    //   firstName: document.getElementById("firstName").value,
-    //   lastName: document.getElementById("lastName").value,
-    //   phoneNumber: document.getElementById("phoneNumber").value,
-    //   email: document.getElementById("email").value,
-    //   age: document.getElementById("age").value,
-    //   disability: document.getElementById("disability").value,
-    //   maritalStatus: document.getElementById("marital-status").value,
-    //   gender: document.getElementById("gender").value,
-    //   address: document.getElementById("address").value,
-    //   city: document.getElementById("city").value,
-    //   state: document.getElementById("state").value,
-    //   country: document.getElementById("country").value,
-    // };
     document.getElementById("userDetailsForm").reset();
     self.DisplaySuccessfulMessage();
     self.whenUpdate(false);
     self.whenSubmit(true);
   };
-  // Sorting
 
+ 
+
+  // Sorting
   self.sortInAscendingOrder = ko.observable(true);
+
   self.sortTable = function (fieldName) {
     if (self.sortInAscendingOrder) {
+      self.sortInAscendingOrder(false);
       self.userDB.sort(function (a, b) {
         if (a[fieldName].toLowerCase() < b[fieldName].toLowerCase()) {
           return -1;
@@ -246,19 +242,20 @@ function viewModel() {
           return 1;
         }
         return 0;
-      });
-      self.sortInAscendingOrder(false);
+      });  
     } else {
       self.userDB.sort(function (a, b) {
-        if (a[fieldName] < b[fieldName]) {
+        if (a[fieldName] > b[fieldName]) {
           return -1;
         }
-        if (a[fieldName] > b[fieldName]) {
+        if (a[fieldName] < b[fieldName]) {
           return 1;
         }
         return 0;
+        
       });
       self.userDB.reverse();
+      self.sortInAscendingOrder(true);
     }
   };
 }

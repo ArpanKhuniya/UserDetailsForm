@@ -98,9 +98,9 @@
           <button
             type="button"
             id="button-next"
-            data-bind="click:LoadSection2 "
+            data-bind="click:LoadSection2 ,enable:EnableNextButtonOfSection1"
           >
-            <!-- ,enable:EnableNextButtonOfSection1 -->
+            
             Next
           </button>
         </div>
@@ -161,7 +161,6 @@
                 <label for="female">Female</label>
                 <input
                   type="radio"
-                  id="female"
                   name="gender"
                   value="Female"
                   id="gender"
@@ -184,9 +183,9 @@
             <button
               type="button"
               id="button-next2"
-              data-bind="click:LoadSection3"
+              data-bind="click:LoadSection3 ,enable:EnableNextButtonOfSection2"
             >
-              <!-- ,enable:EnableNextButtonOfSection2 -->
+              
               Next
             </button>
           </div>
@@ -289,74 +288,86 @@
       <h3 class="sectionfilter">List of users</h3>
       <div id="userListGrid">
         <div class="userListDiv">
-          <a class="userListHead" data-bind="click:sortTable('firstName')"
-            >First Name</a
-          >
-          <!-- <button data-bind="click:sortArray">FirstNameSort</button> -->
-        </div>
-        <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('lastName')"
-            >Last Name</a
+          <p class="userListHead" data-bind="click:sortTable('firstName')"
+            >First Name</p
           >
         </div>
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('phoneNumber')"
-            >Phone Number</a
+          <p class="userListHead" data-bind="click:sortTable('lastName')"
+            >Last Name</p
           >
         </div>
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('email')">Email</a>
-        </div>
-        <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('age')">Age</a>
-        </div>
-        <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('disability')"
-            >Disability</a
+          <p class="userListHead" data-bind="click:sortTable('phoneNumber')"
+            >Phone Number</p
           >
         </div>
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('marital-status')"
-            >Marital-Status</a
+          <p class="userListHead" data-bind="click:sortTable('email')">Email</p>
+        </div>
+        <div class="userListDiv">
+          <p class="userListHead" data-bind="click:sortTable('age')">Age</p>
+        </div>
+        <div class="userListDiv">
+          <p class="userListHead" data-bind="click:sortTable('disability')"
+            >Disability</p
           >
         </div>
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('gender')">Gender</a>
+          <p class="userListHead" data-bind="click:sortTable('maritalStatus')"
+            >Marital-Status</p
+          >
+        </div>
+        <div class="userListDiv">
+          <p class="userListHead" data-bind="click:sortTable('gender')">Gender</p>
         </div>
 
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('address')"
-            >Address</a
-          >
+          <p class="userListHead" data-bind="click:sortTable('address')"
+            >Address
+          </p>
         </div>
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('city')">City</a>
+          <p class="userListHead" data-bind="click:sortTable('city')">City</p>
         </div>
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('state')">State</a>
+          <p class="userListHead" data-bind="click:sortTable('state')">State</p>
         </div>
         <div class="userListDiv">
-          <a class="userListHead" onclick="SortListOfUsers('country')"
-            >Country</a
-          >
+          <p class="userListHead" data-bind="click:sortTable('country')"
+            >Country
+          </p>
+        </div>
+        <div class="userListDiv">
+          <p class="userListHead"
+            >CRUD Operations
+          </p>
         </div>
       </div>
-      <div id="userListGridData" data-bind="foreach:userDB">
-        <h5 class="userListData" data-bind="text: firstName"></h5>
-        <h5 class="userListData" data-bind="text: lastName"></h5>
-        <h5 class="userListData" data-bind="text: phoneNumber"></h5>
-        <h5 class="userListData" data-bind="text: email"></h5>
-        <h5 class="userListData" data-bind="text: age"></h5>
-        <h5 class="userListData" data-bind="text: disability"></h5>
-        <h5 class="userListData" data-bind="text: maritalStatus"></h5>
-        <h5 class="userListData" data-bind="text: gender"></h5>
-        <h5 class="userListData" data-bind="text: address"></h5>
-        <h5 class="userListData" data-bind="text: city"></h5>
-        <h5 class="userListData" data-bind="text: state"></h5>
-        <h5 class="userListData" data-bind="text: country"></h5>
-        <button data-bind="click: $root.RemoveUser">Remove User</button>
-        <a href="#div1" data-bind="click: $root.UpdateUserDetails">Update</a>
+      <div data-bind="foreach:userDB">
+        <div id="userListGridData" >
+          <p class="userListData" data-bind="text: firstName"></p>
+          <p class="userListData" data-bind="text: lastName"></p>
+          <p class="userListData" data-bind="text: phoneNumber"></p>
+          <p class="userListData" data-bind="text: email"></p>
+          <p class="userListData" data-bind="text: age"></p>
+          <p class="userListData" data-bind="text: disability"></p>
+          <p class="userListData" data-bind="text: maritalStatus"></p>
+          <p class="userListData" data-bind="text: gender"></p>
+          <p class="userListData" data-bind="text: address"></p>
+          <p class="userListData" data-bind="text: city"></p>
+          <p class="userListData" data-bind="text: state"></p>
+          <p class="userListData" data-bind="text: country"></p>
+          <div class="userListData">
+            <button class="crudButtonRemove" data-bind="click: $root.RemoveUser">Remove</button>
+            <a class="crudButtonUpdate" data-bind="click: $root.UpdateUserDetails , attr:{href:'div1'}, clickBubble: false">Update</a>
+          </div>
+          <button type="button" data-bind="click: $root.getIndex">GetIndex</button> 
+          
+        </div>
+          
       </div>
+      <p data-bind="text:index"></p>
     </div>
 
     <script src="./userDetailsFormUsingKnockout.js"></script>
