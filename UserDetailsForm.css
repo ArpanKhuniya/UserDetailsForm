@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: #a2d2ff;
 }
 
 #div1,
@@ -98,7 +98,7 @@ select {
   box-shadow: 8px 8px;
 }
 
-#successBtn {
+.successBtn {
   width: 35%;
   background: #237fd5;
   font-weight: 700;
@@ -129,7 +129,7 @@ select {
 #userListGrid {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, 7vw) 10vw 3vw repeat(3, 5vw) 10vw repeat(3,7vw) 12vw;
+  grid-template-columns: repeat(3, 7vw) 10vw 3vw repeat(3, 5vw) 10vw repeat(3, 7vw) 12vw;
   grid-template-rows: repeat(autofill, 1fr);
   gap: 0%;
 }
@@ -144,16 +144,14 @@ select {
 .userListHead {
   text-align: center;
   text-decoration: none;
-  margin: 15%;
   font-weight: 700;
   cursor: context-menu;
-  color: white;
+  /* color: white; */
   overflow: scroll;
   scrollbar-width: none;
 }
 
 .userListData {
-  background-color: white;
   border: 2px solid black;
   border-collapse: collapse;
   width: 100%;
@@ -167,13 +165,14 @@ select {
 #userListGridData {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, 7vw) 10vw 3vw repeat(3, 5vw) 10vw repeat(3,7vw) 12vw;
+  grid-template-columns: repeat(3, 7vw) 10vw 3vw repeat(3, 5vw) 10vw repeat(3, 7vw) 12vw;
   grid-template-rows: repeat(autofill, 1fr);
   background-color: white;
   margin: 0;
 }
 
-.crudButtonRemove,.crudButtonUpdate{
+.crudButtonRemove,
+.crudButtonUpdate {
   background-color: #237fd5;
   color: white;
   font-weight: 700;
@@ -339,9 +338,32 @@ select {
 
 /* Images */
 
-#deleteBinImage{
-  height:5px;
+#deleteBinImage {
+  height: 5px;
   width: 5px;
+}
+
+/* Deletion and Updation */
+
+.confirm-deletion {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #2c3e50;
+  display: block;
+  color: black;
+  background-color: white;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid black;
+  width: 25%;
+  margin: 2vw 33vw;
+  padding: 2%;
+  border-radius: 3%;
+  animation-name: SuccessfulMessage;
+  animation-duration: 2s;
+  box-shadow: 8px 8px;
+  position: relative;
+  top: 2vw;
 }
 
 /* Animations */
@@ -401,6 +423,7 @@ select {
   body {
     background: #a2d2ff;
   }
+
   .div1 {
     padding: 3%;
     width: 80vw;
@@ -490,14 +513,14 @@ select {
   }
 
   #userListGrid {
-    grid-template-columns: repeat(3, 1fr) 1.5fr .05fr repeat(3, 0.75fr) 1.5fr repeat(3,1fr) 2fr;
+    grid-template-columns: repeat(3, 1fr) 1.5fr .05fr repeat(3, 0.75fr) 1.5fr repeat(3, 1fr) 2fr;
     display: grid;
     width: 100%;
     overflow: scroll;
   }
-  
-  #userListGridData{
-    grid-template-columns: repeat(3, 1fr) 1.5fr .05fr repeat(3, 0.75fr) 1.5fr repeat(3,1fr) 2fr;
+
+  #userListGridData {
+    grid-template-columns: repeat(3, 1fr) 1.5fr .05fr repeat(3, 0.75fr) 1.5fr repeat(3, 1fr) 2fr;
     overflow: scroll;
   }
 
@@ -507,3 +530,4 @@ select {
     width: 70%;
   }
 }
+

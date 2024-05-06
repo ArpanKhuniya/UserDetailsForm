@@ -5,6 +5,9 @@ function viewModel() {
   self.sectionHeaderForPersonalDetails = ko.observable("Personal Details");
   self.sectionHeaderForAddressDetails = ko.observable("Address Details");
 
+  self.whenSubmit = ko.observable(true);
+  self.whenUpdate = ko.observable(false);
+
   // Successful Message.
   self.successfulMessage = ko.observable(false);
 
@@ -16,7 +19,6 @@ function viewModel() {
   self.HideSuccessfulMessage = function () {
     self.successfulMessage(false);
     self.LoadSection1();
-
   };
 
   self.HideAllSections = ko.observable(false);
@@ -123,7 +125,7 @@ function viewModel() {
   });
 
   self.CheckValidtiyOfAllFields = ko.computed(function () {
-    if(self.whenUpdate){return true};
+    if(self.whenUpdate()){return true};
     return (
       !self.ValidateState() && self.state() &&
       self.address() && 
@@ -134,14 +136,14 @@ function viewModel() {
 
   // Enable next buttons.
   self.EnableNextButtonOfSection1 = ko.computed(function () {
-    if(self.whenUpdate){return true}
+    if(self.whenUpdate()){return true}
     return !self.ValidateFirstName() && !self.ValidateLastName() && !self.ValidatePhoneNumber() && !self.ValidateEmail() 
     && self.firstName() && self.lastName() && self.phoneNumber() && self.email();
 
   });
 
   self.EnableNextButtonOfSection2 = ko.computed(function () {
-    if(self.whenUpdate){return true}
+    if(self.whenUpdate()){return true}
     return !self.ValidateAge() && self.age();
   });
 
@@ -185,9 +187,23 @@ function viewModel() {
 
   // Remove user
 
-  self.RemoveUser = function (user) {
-    self.userDB.remove(user);
+  self.indexOfUserRecordToDelete=ko.observable(-1);
+
+  self.confirmDeletion=ko.observable(false);
+
+  self.getIndexOfUserRecordToDelete=function(user){
+    self.indexOfUserRecordToDelete(self.userDB.indexOf(user));
+    self.confirmDeletion(true);
+  }
+
+  self.RemoveUser = function () {
+    self.userDB.splice(self.indexOfUserRecordToDelete(),1);
     self.LoadSection1();
+    self.confirmDeletion(false);
+  };
+
+  self.hideConfirmDiv=function(){
+    self.confirmDeletion(false);
   };
 
   // Update user Details
@@ -204,10 +220,9 @@ function viewModel() {
     self.LoadSection1();
   }
 
-  self.indexOfCurrentElement = ko.observable(-1);
+  self.indexOfElementToUpdate = ko.observable(-1);
 
-  self.whenSubmit = ko.observable(true);
-  self.whenUpdate = ko.observable(false);
+ 
 
   self.PopulateFormWithValues = function (user) {
     document.getElementById("firstName").value = user.firstName;
@@ -228,14 +243,14 @@ function viewModel() {
     self.PopulateFormWithValues(user);
     self.whenUpdate(true);
     self.whenSubmit(false);
-    self.indexOfCurrentElement(self.userDB.indexOf(user));
+    self.indexOfElementToUpdate(self.userDB.indexOf(user));
     self.HideUpdatedMessage();
     self.HideSuccessfulMessage();
     self.LoadSection1();
   };
 
   self.UpdateUserDetailsFormButton = function () {
-    self.userDB.splice(self.indexOfCurrentElement(), 1, {
+    self.userDB.splice(self.indexOfElementToUpdate(), 1, {
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
       phoneNumber: document.getElementById("phoneNumber").value,
