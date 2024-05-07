@@ -14,31 +14,45 @@
 </head>
 
 <body>
-  <div id="select-theme">
-    <label for="Themes">Themes</label>
-    <button id="theme-light">Light</button>
-    <button id="theme-dark">Dark</button>
-    <button id="theme-nature">Nature</button>
-    <button id="theme-colorful">Colorful</button>
-    <button id="theme-vintage">Vintage</button>
+  <div class="flexOfTwo">
+    <div >
+      <button id="language" data-bind="text:language"></button>
+      <div id="select-language" style="display: none">
+        <button id="lang-english" data-bind="text:english,click:getLanguageCode('English')"></button>
+        <button id="lang-french" data-bind="text:french,click:getLanguageCode('French')"></button>
+        <button id="theme-marathi" data-bind="text:marathi,click:getLanguageCode('Marathi')"></button>
+        <button id="theme-german" data-bind="text:german,click:getLanguageCode('German')"></button>
+        <button id="theme-kannada" data-bind="text:kannada,click:getLanguageCode('Kannada')"></button>
+      </div>
+    </div>
+    <div>
+      <button id="theme" data-bind="text:theme"></button>
+      <div id="select-theme" style="display: none">
+        <button id="theme-light" data-bind="text:light"></button>
+        <button id="theme-dark" data-bind="text:dark"></button>
+        <button id="theme-nature" data-bind="text:nature"></button>
+        <button id="theme-colorful" data-bind="text:colorful"></button>
+        <button id="theme-vintage" data-bind="text:vintage"></button>
+      </div>
+    </div>
   </div>
   <!-- User Details Form -->
   <div id="div1">
     <form id="userDetailsForm">
       <!-- Message for Response Submitted -->
       <div id="submitSuccessful" data-bind="visible : successfulMessage">
-        <h3>Your details have been recorded.</h3>
-        <button type="button" class="successBtn" data-bind="click:HideSuccessfulMessage">
-          Ok</button><br />
-        <a href="#div2" id="viewUserLink">View users list</a>
+        <h3 data-bind="text:submitMsg"></h3>
+        <button type="button" class="successBtn" data-bind="click:HideSuccessfulMessage,text:ok">
+        </button><br />
+        <a href="#div2" id="viewUserLink" data-bind="text:viewMsg"></a>
       </div>
 
       <!-- Message for Response Edited -->
       <div id="submitSuccessful" data-bind="visible : updatedMessage">
-        <h3>Your details have been updated.</h3>
-        <button type="button" class="successBtn" data-bind="click:HideUpdatedMessage">
-          Ok</button><br />
-        <a href="#div2" id="viewUserLink">View users list</a>
+        <h3 data-bind="text:updateMsg"></h3>
+        <button type="button" class="successBtn" data-bind="click:HideUpdatedMessage,text:ok">
+        </button><br />
+        <a href="#div2" id="viewUserLink" data-bind="text:viewMsg"></a>
       </div>
 
       <!-- Section 1 -->
@@ -46,34 +60,33 @@
         <h3 class="sectionHead" data-bind="text : sectionHeaderForPersonalDetails()"></h3>
         <!-- First Name -->
         <div class="formElement">
-          <label for="firstName">First Name:</label>
+          <label for="firstName" data-bind="text:langFirstName">:</label>
           <input type="text" id="firstName" class="input" name="firstName"
             data-bind="value:firstName ,valueUpdate:'afterkeydown' " />
-          <span id="errorfirstName" data-bind="visible : ValidateFirstName()">First Name should have only
-            alphabets.</span>
+          <span id="errorfirstName" data-bind="visible : ValidateFirstName(),text:firstNameError"></span>
         </div>
         <!-- Last Name -->
         <div class="formElement">
-          <label for="lastName">Last Name:</label>
+          <label for="lastName" data-bind="text:langLastName"></label>
           <input type="text" id="lastName" name="lastName" data-bind="value:lastName, valueUpdate:'afterkeydown'" />
-          <span id="errorlastName" data-bind="visible:ValidateLastName()">Last Name should have only alphabets.</span>
+          <span id="errorlastName" data-bind="visible:ValidateLastName(),text:lastNameError"></span>
         </div>
         <!-- Phone Number -->
         <div class="formElement">
-          <label for="phoneNumber">Phone Number:</label>
+          <label for="phoneNumber" data-bind="text:langPhoneNumber"></label>
           <input type="tel" id="phoneNumber" name="phoneNumber"
             data-bind="value:phoneNumber ,valueUpdate:'afterkeydown'" />
-          <span id="errorPhoneNumber" data-bind="visible:ValidatePhoneNumber()">Please enter 10 digit phone
-            number.</span>
+          <span id="errorPhoneNumber" data-bind="visible:ValidatePhoneNumber(),text:phoneNumberError"></span>
         </div>
         <!-- Email -->
         <div class="formElement">
-          <label for="email">Email:</label>
+          <label for="email" data-bind="text:langEmail"></label>
           <input type="email" id="email" name="email" data-bind="value:email,valueUpdate:'afterkeydown'" />
-          <span id="errorEmail" data-bind="visible:ValidateEmail()">Email should have @ and .</span>
+          <span id="errorEmail" data-bind="visible:ValidateEmail() , text:emailError"></span>
         </div>
-        <button type="button" id="button-next" data-bind="click:LoadSection2 ,enable:EnableNextButtonOfSection1()">
-          Next
+        <button type="button" id="button-next"
+          data-bind="click:LoadSection2 ,enable:EnableNextButtonOfSection1(),text:nextMsg">
+
         </button>
       </div>
 
@@ -82,42 +95,41 @@
         <h3 class="sectionHead" data-bind="text : sectionHeaderForPersonalDetails()"></h3>
         <!-- Age -->
         <div class="formElement">
-          <label for="age">Age:</label>
+          <label for="age" data-bind="text:langAge"></label>
           <input type="number" id="age" name="age" data-bind="value:age, valueUpdate:'afterkeydown'" />
-          <span id="errorAge" data-bind="visible:ValidateAge">Age should be greater than 0 and less than 150</span>
+          <span id="errorAge" data-bind="visible:ValidateAge , text:ageError"></span>
         </div>
         <!-- Disability -->
         <div class="formElement">
-          <label for="disability">Disability:</label>
+          <label for="disability" data-bind="text:langDisability"></label>
           <select name="disability" id="disability" data-bind="options:disabilityOptions, value:disability "></select>
         </div>
         <!-- Marital Status -->
         <div class="formElement">
-          <label for="marital-status">Marital-Status:</label>
+          <label for="marital-status" data-bind="text:langMaritalStatus"></label>
           <select name="marital-status" id="marital-status"
             data-bind="options:maritalStatusOptions,value:maritalStatus"></select>
         </div>
         <!-- Gender -->
         <div class="formElement genderField">
           <div id="flexGenderInputField">
-            <label for="gender">Gender:</label>
+            <label for="gender" data-bind="text:langGender"></label>
             <div class="gender">
-              <label for="male">Male</label>
+              <label for="male" data-bind="text:male"></label>
               <input type="radio" name="gender" value="Male" id="gender" data-bind="checked:gender " checked />
             </div>
             <div class="gender">
-              <label for="female">Female</label>
+              <label for="female" data-bind="text:female"></label>
               <input type="radio" name="gender" value="Female" id="gender" data-bind="checked:gender" />
             </div>
-            <span id="errorgender" style="display: none">Please enter a value.</span>
           </div>
         </div>
         <div class="flexbox">
-          <button type="button" id="button-previous2" data-bind="click:LoadSection1">
-            Previous
+          <button type="button" id="button-previous2" data-bind="click:LoadSection1,text:previousMsg">
           </button>
-          <button type="button" id="button-next2" data-bind="click:LoadSection3 ,enable:EnableNextButtonOfSection2">
-            Next
+          <button type="button" id="button-next2"
+            data-bind="click:LoadSection3 ,enable:EnableNextButtonOfSection2,text:nextMsg">
+
           </button>
         </div>
       </div>
@@ -127,44 +139,43 @@
         <h3 class="sectionHead" data-bind="text : sectionHeaderForAddressDetails()"></h3>
         <!-- Address -->
         <div class="formElement">
-          <label for="address">Address: </label>
+          <label for="address" data-bind="text:langAddress"></label>
           <input type="text" id="address" name="address" data-bind="value:address ,valueUpdate:'afterkeydown'" />
         </div>
         <!-- City -->
         <div class="formElement">
-          <label for="city">City:</label>
+          <label for="city" data-bind="text:langCity"></label>
           <input type="text" id="city" name="city" data-bind="value:city,valueUpdate:'afterkeydown'" />
-          <span id="errorcity" data-bind="visible:ValidateCity()">City name should have only alphabets.</span>
+          <span id="errorcity" data-bind="visible:ValidateCity() ,text:cityError"></span>
         </div>
         <!-- State -->
         <div class="formElement">
-          <label for="state">State:</label>
+          <label for="state" data-bind="text:langState"></label>
           <input type="text" id="state" name="state" data-bind="value:state,valueUpdate:'afterkeydown'" />
           <!-- <span id="errorstate">Please enter a value.</span> -->
-          <span id="errorcity" data-bind="visible:ValidateState()">State name should have only alphabets.</span>
+          <span id="errorcity" data-bind="visible:ValidateState() ,text:stateError"></span>
         </div>
         <!-- Country -->
         <div class="formElement">
-          <label for="country">Country:</label>
+          <label for="country" data-bind="text:langCountry"></label>
           <input type="text" id="country" name="country" data-bind="value:country ,valueUpdate:'afterkeydown'" />
-          <span id="errorcity" data-bind="visible:ValidateCountry()">Country name should have only alphabets.</span>
+          <span id="errorcity" data-bind="visible:ValidateCountry(),text:countryError"></span>
           <!-- <span id="errorcountry">Please enter a value.</span> -->
         </div>
         <div class="flexbox">
-          <button type="button" id="button-previous2" data-bind="click:LoadSection2">
-            Previous
+          <button type="button" id="button-previous2" data-bind="click:LoadSection2,text:previousMsg">
           </button>
           <button type="submit" id="submit"
-            data-bind="enable:CheckValidtiyOfAllFields(),click : OnSubmit, visible:whenSubmit">
-            Submit
+            data-bind="enable:CheckValidtiyOfAllFields(),click : OnSubmit, visible:whenSubmit,text:submitBtn">
           </button>
-          <button type="submit" id="submit" data-bind="visible:whenUpdate ,click: UpdateUserDetailsFormButton ">
-            Update
+          <button type="submit" id="submit"
+            data-bind="visible:whenUpdate ,click: UpdateUserDetailsFormButton ,text:updateBtn">
+
           </button>
           <br />
         </div>
-        <p id="AllFieldsErrorMessage" data-bind="visible:!CheckValidtiyOfAllFields()">
-          Please fill all fields.
+        <p id="AllFieldsErrorMessage" data-bind="visible:!CheckValidtiyOfAllFields(),text:allError">
+
         </p>
       </div>
     </form>
@@ -173,64 +184,50 @@
   <hr />
 
   <div id="div2">
-    <h3 class="sectionfilter">List of users</h3>
+    <h3 class="sectionfilter" data-bind="text:sectionHeaderListOfUsers">
+
+    </h3>
     <div class="d">
       <div id="userListGrid">
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('firstName')">
-            First Name
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('firstName'),text:langFirstName"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('lastName')">
-            Last Name
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('lastName') , text:langLastName"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('phoneNumber')">
-            Phone Number
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('phoneNumber') ,text:langPhoneNumber"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('email')">Email</p>
+          <p class="userListHead" data-bind="click:sortTable('email'),text:langEmail"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('age')">Age</p>
+          <p class="userListHead" data-bind="click:sortTable('age'),text:langAge"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('disability')">
-            Disability
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('disability'),text:langDisability"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('maritalStatus')">
-            Marital-Status
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('maritalStatus'),text:langMaritalStatus"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('gender')">
-            Gender
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('gender'),text:langGender"></p>
         </div>
 
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('address')">
-            Address
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('address'),text:langAddress"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('city')">City</p>
+          <p class="userListHead" data-bind="click:sortTable('city'),text:langCity"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('state')">State</p>
+          <p class="userListHead" data-bind="click:sortTable('state'),text:langState"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead" data-bind="click:sortTable('country')">
-            Country
-          </p>
+          <p class="userListHead" data-bind="click:sortTable('country'),text:langCountry"></p>
         </div>
         <div class="userListDiv">
-          <p class="userListHead">CRUD Operations</p>
+          <p class="userListHead" data-bind="text:CRUDOperations"></p>
         </div>
       </div>
       <div data-bind="foreach:userDB">
@@ -259,12 +256,12 @@
       </div>
     </div>
     <div class="confirm-deletion" data-bind="visible: confirmDeletion()">
-      <h3>Do you want to delete the details?</h3>
-      <button type="button" class="successBtn" data-bind="click:RemoveUser">
-        Yes
+      <h3 data-bind="text:deleteConfirmationMsg"></h3>
+      <button type="button" class="successBtn" data-bind="click:RemoveUser,text:yes">
+
       </button>
-      <button type="button" class="successBtn" data-bind="click:hideConfirmDiv">
-        No
+      <button type="button" class="successBtn" data-bind="click:hideConfirmDiv,text:no">
+
       </button>
     </div>
   </div>

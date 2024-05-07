@@ -366,6 +366,48 @@ select {
   top: 2vw;
 }
 
+/* Theme */
+.flexOfTwo{
+  display: flex;
+  gap: 10px;
+  margin: 0 43%;
+}
+
+#theme{
+  padding: 10px 25px;
+  font-weight: 700;
+  width: 120%;
+}
+
+#select-theme{
+  display: flex;
+  flex-direction: column;
+  width: 120%;
+  padding: 5px 0px;
+}
+
+#select-theme button{
+  margin: 2px 0px;
+  padding: 3px 10px;
+}
+
+#language{
+  padding: 10px 25px;
+  font-weight: 700;
+}
+
+#select-language{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px 0px;
+}
+
+#select-language button{
+  margin: 2px 0px;
+  padding: 3px 10px;
+}
+
 /* Animations */
 @keyframes IncreaseWidthAndColorSection {
   from {
@@ -529,5 +571,26 @@ select {
     margin: 5% 20%;
     width: 70%;
   }
+
+  .flexOfTwo{
+    margin: 0 20%;
+  }
+  
+  #theme{
+    margin: 0;
+  }
+  
+  #select-theme{
+    margin: 0;
+  }
+
+  #language{
+    margin: 0;
+  }
+  
+  #select-language{
+    margin: 0;
+  }
+  
 }
 

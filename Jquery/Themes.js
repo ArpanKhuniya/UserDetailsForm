@@ -2,16 +2,17 @@ $(document).ready(function () {
     $("#theme-light").click(function () {
         $("#div1,#div2,body").css("background", "none");
         $("#div1,#div2,body").css("background-color", "#a2d2ff");
-        $("#section1,#section2,#section3,.sectionHead,.sectionfilter").css("background-color", "white");
+        $("#section1,#section2,#section3,.sectionHead,.sectionfilter,#theme,#select-theme button,#language,#select-language button").css("background-color", "white");
         $(".formElement").css("background-color", "white");
         $("label").css("color", "black");
         $(
             "#button-next,#button-next2,#button-previous2,#button-previous,#submit,#userListGrid,.userListDiv,.crudButtonRemove,.crudButtonUpdate"
         ).css("background-color", "#237fd5");
         $(
-            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate"
+            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,#theme,#select-theme"
         ).css("color", "white");
-        $("label").css("color", "black");
+        $("label,#theme,#select-theme button,#language,#select-language button").css("color", "black");
+        $(".sectionfilter,.sectionHead").css("color","#2c3e50")
         $(
             ".sectionfilter"
         ).css("background-color", "white");
@@ -19,22 +20,21 @@ $(document).ready(function () {
         $("input").css("background-color", "white");
         $("#submitSuccessful h3").css("color", "black");
         $("#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink").css("border", "none")
-        $("#submitSuccessful h3").css("color", "black");
     });
 
 
     $("#theme-dark").click(function () {
         $("#div1,#div2,body").css("background-color", "#5B5C62");
-        $("#section1,#section2,#section3,#submitSuccessful").css("background-color", "#26262C");
+        $("#section1,#section2,#section3,#submitSuccessful,#theme,#select-theme button,#language,#select-language button").css("background-color", "#26262C");
         $(".formElement").css("background-color", "#5B5C62");
         $(".formElement").css("border", "1px solid black");
-        $("label").css("color", "white");
+        $("label,.sectionfilter,#theme,#select-theme button,#language,#select-language button").css("color", "white");
         $(
             "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,#userListGrid,.userListDiv"
         ).css("background-color", "#6A6B70");
         $(".sectionfilter,#userListGrid,.userListDiv").css("background-color","#26262C")
         $(
-            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.userListHead,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter"
+            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.userListHead,.crudButtonRemove,.crudButtonUpdate,.sectionHead"
         ).css("color", "white");
         $("#submitSuccessful h3").css("color", "white");
 
@@ -63,10 +63,10 @@ $(document).ready(function () {
         $(".formElement:contains('Country')").css("background-color", "#CAEDFF")
         $("label").css("color", "black");
         $(
-            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv"
+            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv,#theme,#select-theme button,#language,#select-language button"
         ).css("background-color", "#b9fbc0");
         $(
-            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv"
+            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,.userListHead,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv,#theme,#select-theme button,#language,#select-language button"
         ).css("color", "black");
         $(
             "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv"
@@ -78,14 +78,14 @@ $(document).ready(function () {
     $("#theme-vintage").click(function () {
         $("#div1,#div2,body").css("background", "none");
         $("#div1,#div2,body").css("background-color", "#FFF2E1");
-        $("#section1,#section2,#section3").css("background-color", "#D1BB9E");
+        $("#section1,#section2,#section3,#theme,#select-theme button,#language,#select-language button").css("background-color", "#D1BB9E");
         $(".formElement").css("background-color", "#FFF2E1");
         $("label").css("color", "black");
         $(
             "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.sectionHead"
         ).css("background-color", "#FFF2E1");
         $(
-            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv,.userListHead"
+            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv,.userListHead,#theme,#select-theme button,#language,#select-language button"
         ).css("color", "black");
         $("label").css("color", "black");
         $(
@@ -97,24 +97,26 @@ $(document).ready(function () {
     });
 
     $("#theme-nature").click(function () {
-        $("#div1,#div2,body").css("background", "url('https://i.ytimg.com/vi/OOl8ykqhHkw/maxresdefault.jpg')");
-        $("#div1,#div2,body").css("background-repeat", "no-repeat");
-        $("#div1,#div2,body").css("background-size", "100% 100%");
-        $("#div1,#div2,body").css("background-color", "#004B23");
-        $("#section1,#section2,#section3").css("background-color", "#87A922");
-        $(".formElement").css("background-color", "#004B23");
+        $("#div1,#div2,body").css("background", "none");
+        $("#div1,#div2,body").css("background-color", "#ACE1AF");
+        $("#section1,#section2,#section3").css("background-color", "white");
+        $(".formElement").css("background-color", "#ACE1AF");
         $(".formElement").css("border", "1px solid black");
-    //     $("label").css("color", "black");
-    //     $(
-    //         "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv"
-    //     ).css("background-color", "#926448");
-    //     $(
-    //         "#button-next,.sectionHead,.sectionfilter,#userListGrid,.userListDiv"
-    //     ).css("color", "white");
-    //     $("#userListGridData,.userListData,#d").css(
-    //         "background-color",
-    //         "#CE9F6F"
-    //     )
-    //     $("input").css('background-color', "white");
+        $("label").css("color", "black");
+        $(
+            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv,#theme,#select-theme button,#language,#select-language button"
+        ).css("background-color", "#66FF00");
+        $("#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink").css("border", "1px solid black")
+        $(
+            "#button-next,#button-next2,#button-previous2,#button-previous,#submit,.successBtn,#viewUserLink,.crudButtonRemove,.crudButtonUpdate,.sectionHead,.sectionfilter,#userListGrid,.userListDiv,.userListHead,#theme,#select-theme button,#language,#select-language button"
+        ).css("color", "black");
+    })
+
+    $("#theme").click(function(){
+        $("#select-theme").slideToggle('slow');
+    })
+
+    $("#language").click(function(){
+        $("#select-language").slideToggle('slow');
     })
 });
