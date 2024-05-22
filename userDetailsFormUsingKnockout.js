@@ -302,22 +302,29 @@ function viewModel() {
   };
 
   //Languages Translation
+  self.selectedOption=ko.observable();
 
   self.getLanguageCode = function (languageName) {
-    if (languageName == "English") {
-      self.ChangeTextAsPerLanguage(0);
-    }
+    
     if (languageName == "French") {
-      self.ChangeTextAsPerLanguage(1);
+      self.selectedOption(0);
+      self.ChangeTextAsPerLanguage();
     }
     if (languageName == "Marathi") {
-      self.ChangeTextAsPerLanguage(2);
+      self.selectedOption(1);
+      self.ChangeTextAsPerLanguage();
     }
     if(languageName=="German"){
-      self.ChangeTextAsPerLanguage(3);
+      self.selectedOption(2);
+      self.ChangeTextAsPerLanguage();
     }
     if(languageName=="Kannada"){
-      self.ChangeTextAsPerLanguage(4);
+      self.selectedOption(3);
+      self.ChangeTextAsPerLanguage();
+    }
+    if (languageName == "English") {
+      self.selectedOption(4);
+      self.ChangeTextAsPerLanguage();
     }
 
   }
@@ -384,100 +391,54 @@ function viewModel() {
   self.german=ko.observable("German");
   self.kannada=ko.observable("Kannada");
 
-  self.ChangeTextAsPerLanguage = function (selectedOption) {
-    self.langFirstName(self.languages[selectedOption].l_firstName);
-    self.langLastName(self.languages[selectedOption].l_lastName);
-    self.langPhoneNumber(self.languages[selectedOption].l_phoneNumber);
-    self.langEmail(self.languages[selectedOption].l_email);
-    self.langAge(self.languages[selectedOption].l_age);
-    self.langLastName(self.languages[selectedOption].l_lastName);
-    self.langDisability(self.languages[selectedOption].l_disability);
-    self.langMaritalStatus(self.languages[selectedOption].l_maritalStatus);
-    self.langGender(self.languages[selectedOption].l_gender);
-    self.langAddress(self.languages[selectedOption].l_address);
-    self.langState(self.languages[selectedOption].l_state);
-    self.langCity(self.languages[selectedOption].l_city);
-    self.langCountry(self.languages[selectedOption].l_country);
-    self.sectionHeaderForPersonalDetails(self.languages[selectedOption].l_formSection1Header);
-    self.sectionHeaderListOfUsers(self.languages[selectedOption].l_formSection3Header);
-    self.firstNameError(self.languages[selectedOption].l_firstNameError);
-    self.lastNameError(self.languages[selectedOption].l_lastNameError);
-    self.phoneNumberError(self.languages[selectedOption].l_phoneNumberError);
-    self.emailError(self.languages[selectedOption].l_emailError);
-    self.ageError(self.languages[selectedOption].l_ageError);
-    self.cityError(self.languages[selectedOption].l_cityError);
-    self.stateError(self.languages[selectedOption].l_stateError);
-    self.countryError(self.languages[selectedOption].l_countryError);
-    self.allError(self.languages[selectedOption].l_allFieldsError);
-    self.theme(self.languages[selectedOption].l_theme);
-    self.light(self.languages[selectedOption].l_light);
-    self.dark(self.languages[selectedOption].l_dark);
-    self.nature(self.languages[selectedOption].l_nature);
-    self.colorful(self.languages[selectedOption].l_colorful);
-    self.vintage(self.languages[selectedOption].l_vintage);
-    self.nextMsg(self.languages[selectedOption].l_next);
-    self.previousMsg(self.languages[selectedOption].l_previous);
-    self.submitMsg(self.languages[selectedOption].l_submitMessage);
-    self.updateMsg(self.languages[selectedOption].l_updateMessage);
-    self.viewMsg(self.languages[selectedOption].l_viewUserDetails);
-    self.male(self.languages[selectedOption].l_male);
-    self.female(self.languages[selectedOption].l_female);
-    self.submitBtn(self.languages[selectedOption].l_submit);
-    self.updateBtn(self.languages[selectedOption].l_update);
-    self.deleteConfirmationMsg(self.languages[selectedOption].l_deleteConfirmationMessage);
-    self.yes(self.languages[selectedOption].l_yes);
-    self.no(self.languages[selectedOption].l_no);
-    self.CRUDOperations(self.languages[selectedOption].l_crudOperations);
-    self.ok(self.languages[selectedOption].l_ok);
+  self.ChangeTextAsPerLanguage = function () {
+    self.langFirstName(self.languages[self.selectedOption()].l_firstName);
+    self.langLastName(self.languages[self.selectedOption()].l_lastName);
+    self.langPhoneNumber(self.languages[self.selectedOption()].l_phoneNumber);
+    self.langEmail(self.languages[self.selectedOption()].l_email);
+    self.langAge(self.languages[self.selectedOption()].l_age);
+    self.langLastName(self.languages[self.selectedOption()].l_lastName);
+    self.langDisability(self.languages[self.selectedOption()].l_disability);
+    self.langMaritalStatus(self.languages[self.selectedOption()].l_maritalStatus);
+    self.langGender(self.languages[self.selectedOption()].l_gender);
+    self.langAddress(self.languages[self.selectedOption()].l_address);
+    self.langState(self.languages[self.selectedOption()].l_state);
+    self.langCity(self.languages[self.selectedOption()].l_city);
+    self.langCountry(self.languages[self.selectedOption()].l_country);
+    self.sectionHeaderForPersonalDetails(self.languages[self.selectedOption()].l_formSection1Header);
+    self.sectionHeaderListOfUsers(self.languages[self.selectedOption()].l_formSection3Header);
+    self.firstNameError(self.languages[self.selectedOption()].l_firstNameError);
+    self.lastNameError(self.languages[self.selectedOption()].l_lastNameError);
+    self.phoneNumberError(self.languages[self.selectedOption()].l_phoneNumberError);
+    self.emailError(self.languages[self.selectedOption()].l_emailError);
+    self.ageError(self.languages[self.selectedOption()].l_ageError);
+    self.cityError(self.languages[self.selectedOption()].l_cityError);
+    self.stateError(self.languages[self.selectedOption()].l_stateError);
+    self.countryError(self.languages[self.selectedOption()].l_countryError);
+    self.allError(self.languages[self.selectedOption()].l_allFieldsError);
+    self.theme(self.languages[self.selectedOption()].l_theme);
+    self.light(self.languages[self.selectedOption()].l_light);
+    self.dark(self.languages[self.selectedOption()].l_dark);
+    self.nature(self.languages[self.selectedOption()].l_nature);
+    self.colorful(self.languages[self.selectedOption()].l_colorful);
+    self.vintage(self.languages[self.selectedOption()].l_vintage);
+    self.nextMsg(self.languages[self.selectedOption()].l_next);
+    self.previousMsg(self.languages[self.selectedOption()].l_previous);
+    self.submitMsg(self.languages[self.selectedOption()].l_submitMessage);
+    self.updateMsg(self.languages[self.selectedOption()].l_updateMessage);
+    self.viewMsg(self.languages[self.selectedOption()].l_viewUserDetails);
+    self.male(self.languages[self.selectedOption()].l_male);
+    self.female(self.languages[self.selectedOption()].l_female);
+    self.submitBtn(self.languages[self.selectedOption()].l_submit);
+    self.updateBtn(self.languages[self.selectedOption()].l_update);
+    self.deleteConfirmationMsg(self.languages[self.selectedOption()].l_deleteConfirmationMessage);
+    self.yes(self.languages[self.selectedOption()].l_yes);
+    self.no(self.languages[self.selectedOption()].l_no);
+    self.CRUDOperations(self.languages[self.selectedOption()].l_crudOperations);
+    self.ok(self.languages[self.selectedOption()].l_ok);
   }
 
-  self.languages = [{
-    l_formSection1Header: "Personal Details",
-    l_formSection2Header: "Personal Details",
-    l_formSection3Header: "Address Details",
-    l_div2Header: "List Of Users",
-    l_firstName: "First Name",
-    l_lastName: "Last Name",
-    l_phoneNumber: "PhoneNumber",
-    l_email: "Email",
-    l_age: "Age",
-    l_disability: "Disability",
-    l_maritalStatus: "Marital-Status",
-    l_gender: "Gender",
-    l_address: "Address",
-    l_city: "City",
-    l_state: "State",
-    l_country: "Country",
-    l_theme: "Theme",
-    l_light: "Light",
-    l_dark: "Dark",
-    l_nature: "Nature",
-    l_colorful: "Colorful",
-    l_vintage: "Vintage",
-    l_submitMessage: "Your details have been recorded.",
-    l_viewUserDetails: "View users list",
-    l_updateMessage: "Your details have been updated.",
-    l_firstNameError: "First Name should have only alphabets.",
-    l_lastNameError: "Last Name should have only alphabets.",
-    l_phoneNumberError: "Please enter 10 digit phone number.",
-    l_emailError: "Email should have @ and .",
-    l_ageError: "Age should be greater than 0 and less than 150",
-    l_countryError: "Country Name should have only alphabets.",
-    l_male: "Male",
-    l_female: "Female",
-    l_next: "Next",
-    l_previous: "Previous",
-    l_cityError: "City name should have only alphabets.",
-    l_stateError: "State name should have only alphabets.",
-    l_allFieldsError: "Please fill all fields.",
-    l_submit: "Submit",
-    l_update: "Update",
-    l_crudOperations: "CRUD Operations",
-    l_deleteConfirmationMessage: "Do you want to delete the details?",
-    l_yes: "Yes",
-    l_no: "No",
-    l_ok: "Ok"
-  }, {
+  self.languages = [ {
     l_formSection1Header: "Détails personnels",
     l_formSection2Header: "Détails personnels",
     l_formSection3Header: "Détails de l'adresse",
@@ -662,6 +623,52 @@ function viewModel() {
     l_yes: "ಹೌದು",
     l_no: "ಇಲ್ಲ",
     l_ok: "ಸರಿ"
+  },{
+    l_formSection1Header: "Personal Details",
+    l_formSection2Header: "Personal Details",
+    l_formSection3Header: "Address Details",
+    l_div2Header: "List Of Users",
+    l_firstName: "First Name",
+    l_lastName: "Last Name",
+    l_phoneNumber: "PhoneNumber",
+    l_email: "Email",
+    l_age: "Age",
+    l_disability: "Disability",
+    l_maritalStatus: "Marital-Status",
+    l_gender: "Gender",
+    l_address: "Address",
+    l_city: "City",
+    l_state: "State",
+    l_country: "Country",
+    l_theme: "Themes",
+    l_light: "Light",
+    l_dark: "Dark",
+    l_nature: "Nature",
+    l_colorful: "Colorful",
+    l_vintage: "Vintage",
+    l_submitMessage: "Your details have been recorded.",
+    l_viewUserDetails: "View users list",
+    l_updateMessage: "Your details have been updated.",
+    l_firstNameError: "First Name should have only alphabets.",
+    l_lastNameError: "Last Name should have only alphabets.",
+    l_phoneNumberError: "Please enter 10 digit phone number.",
+    l_emailError: "Email should have @ and .",
+    l_ageError: "Age should be greater than 0 and less than 150",
+    l_countryError: "Country Name should have only alphabets.",
+    l_male: "Male",
+    l_female: "Female",
+    l_next: "Next",
+    l_previous: "Previous",
+    l_cityError: "City name should have only alphabets.",
+    l_stateError: "State name should have only alphabets.",
+    l_allFieldsError: "Please fill all fields.",
+    l_submit: "Submit",
+    l_update: "Update",
+    l_crudOperations: "CRUD Operations",
+    l_deleteConfirmationMessage: "Do you want to delete the details?",
+    l_yes: "Yes",
+    l_no: "No",
+    l_ok: "Ok"
   }]
 
 
